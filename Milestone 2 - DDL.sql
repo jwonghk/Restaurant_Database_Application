@@ -1,3 +1,5 @@
+-- CREATE TABLES
+
 CREATE TABLE RestaurantsMain(
     RID INTEGER PRIMARY KEY,
     RName CHAR(32),
@@ -172,3 +174,62 @@ CREATE TABLE Included(
         ON DELETE SET DEFAULT 
         ON UPDATE CASCADE
 );
+
+-- INSERTIONS INTO TABLES
+
+INSERT INTO RestaurantsMain(RID, RName, Branch, RLocation) VALUES
+(1, "Jo's Italian Deli", "West Point Grey", "Vancouver, BC, CA"),
+(2, "Nelly's Brunch Pantry", "Kitsilano", "Vancouver, BC, CA");
+
+INSERT INTO RestaurantsName(Cuisine, RName) VALUES
+;
+
+INSERT INTO MenusOffered(MID, MType, RID) VALUES
+;
+
+INSERT INTO Suppliers(SID, SName, SLocation) VALUES
+;
+
+INSERT INTO Ingredients(IName, IType) VALUES
+;
+
+INSERT INTO Supplied(IName, SID, Cost) VALUES
+;
+
+INSERT INTO DishesHad(MID, DName, DType, Price, DateIntroduced) VALUES
+;
+
+INSERT INTO Contained(MID, DName, IName, Quantity) VALUES
+;
+
+INSERT INTO Customers(CEmail, PhoneNo, CName) VALUES
+;
+
+INSERT INTO EmployeesMain(EID, EName, AnnualSalary) VALUES
+;
+
+INSERT INTO EmployeesSalary(AnnualSalary, FulltimeStatus) VALUES
+;
+
+INSERT INTO Servers(EID, AlcoholServingCertification) VALUES
+;
+
+INSERT INTO Cooks(EID, Rank) VALUES
+(1, 'Head Chef'),
+(2, 'Line Cook'),
+(3, 'Sous Chef');
+
+INSERT INTO ManagersManaged(EID, RID) VALUES
+;
+
+INSERT INTO Employed(EID, RID, DateEmployed) VALUES
+;
+
+INSERT INTO CanCook(EID, MID, DName) VALUES
+;
+
+INSERT INTO OrdersPlacedServedTaken(OID, TotalPrice, Date, SatisfactionRating, CEmail, RID, EID) VALUES
+;
+
+INSERT INTO Included(OID, MID, DName) VALUES
+;
