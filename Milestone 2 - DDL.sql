@@ -26,6 +26,7 @@ CREATE TABLE Suppliers(
     SID INTEGER PRIMARY KEY,
     SName CHAR(32),
     SLocation CHAR(32)
+    UNIQUE(SName, SLocation)
 );
 
 CREATE TABLE Ingredients(
@@ -179,10 +180,13 @@ CREATE TABLE Included(
 
 INSERT INTO RestaurantsMain(RID, RName, Branch, RLocation) VALUES
 (1, "Jo's Italian Deli", "West Point Grey", "Vancouver, BC, CA"),
-(2, "Nelly's Brunch Pantry", "Kitsilano", "Vancouver, BC, CA");
+(2, "Nelly's Brunch Pantry", "Kitsilano", "Vancouver, BC, CA"),
+(3, "Les Amis", "Kitsilano", "Montreal, QC, CA");
 
 INSERT INTO RestaurantsName(Cuisine, RName) VALUES
-;
+("Italian", "Jo's Italian Deli"),
+("Brunch", "Nelly's Brunch Pantry"),
+("French", "Les Amis");
 
 INSERT INTO MenusOffered(MID, MType, RID) VALUES
 ;
