@@ -374,6 +374,8 @@ INSERT INTO OrdersPlacedServedTaken(OID, TotalPrice, Date, SatisfactionRating, C
 (5, 24, DATE '2021-02-11', 7, "casaraghi@gmail.com", 3 ,5),
 (6, 34, DATE '2021-07-03', 6, "bierhoff@gmail.com", 3 ,6),
 (7, 63, DATE '2022-12-21', 9, "oliver@gmail.com", 2 ,7),
+(8, 24, DATE '2020-07-03', 6, "donald@gmail.com", 4 ,8),
+(9, 25, DATE '2020-12-21', 9, "amy@gmail.com", 4 ,9),
 ;
 
 INSERT INTO Included(OID, MID, DName) VALUES
