@@ -308,7 +308,26 @@ INSERT INTO EmployeesMain(EID, EName, AnnualSalary) VALUES
 (20, "Ryan Lewis", 28200);
 
 INSERT INTO EmployeesSalary(AnnualSalary, FulltimeStatus) VALUES
-;
+(35000, 1),
+(30000, 1),
+(32000, 1),
+(28000, 0),
+(33000, 1)
+(29000, 0),
+(31000, 1),
+(27000, 0),
+(64000, 1),
+(30500, 1),
+(33500, 1),
+(28500, 0),
+(31500, 1),
+(29500, 0),
+(32500, 1),
+(10500, 0),
+(34500, 1),
+(30200, 1),
+(33200, 1),
+(28200, 0);
 
 INSERT INTO Servers(EID, AlcoholServingCertification) VALUES
 (1, 1),
