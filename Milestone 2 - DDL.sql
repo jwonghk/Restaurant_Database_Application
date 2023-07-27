@@ -283,7 +283,22 @@ INSERT INTO Contained(MID, DName, IName, Quantity) VALUES
 (9, "Thai Mojito", "Lime", "1 oz");
 
 INSERT INTO Customers(CEmail, PhoneNo, CName) VALUES
-;
+("johnny@hotmail.com", "604-223-1928", "Johnny Walker")
+("peter@gmail.com", "604-111-2222", "Peter Cooks")
+("jennifer@gmail.com", "604-222-1111", "Jennifer Tao")
+("delpiero@gmail.com", "604-213-4444", "Alex Delpiero")
+("casaraghi@gmail.com", "604-198-6464", "Alex Casaraghi")
+("bierhoff@gmail.com", "237-122-9810", "Oliver Bierhoff")
+("oliver@gmail.com", "237-114-0100", "Oliver Chow")
+("donald@gmail.com", "237-009-9191", "Donald Acton")
+("amy@gmail.com", "237-999-0099", "Amy Lee")
+("schevechenko@gmail.com", "604-122-3333", "Andrie Schevechenko")
+("hernan@gmail.com", "604-888-9999", "Hernan Crespo")
+("gabriel@gmail.com", "604-332-2211", "Gabriel Batistuta")
+("riken@gmail.com", "237-999-1111", "Riken")
+("moller@gmail.com", "237-199-0000", "Andreas Moller")
+("gomez@gmail.com", "237-333-1010", "Mario Gomez")
+("jurgen@gmail.com", "237-000-1111", "Jurgen Klinsmen");
 
 INSERT INTO EmployeesMain(EID, EName, AnnualSalary) VALUES
 (1, "Alice Johnson", 35000),
@@ -397,9 +412,9 @@ INSERT INTO OrdersPlacedServedTaken(OID, TotalPrice, Date, SatisfactionRating, C
 (9, 25, DATE '2020-12-21', 9, "amy@gmail.com", 4 ,9),
 (10, 17, DATE '2020-12-21', 9, "schevechenko@gmail.com", 3 ,10),
 (11, 28, DATE '2019-03-24', 7, "hernan@gmail.com", 5 ,11),
-(12, 39, DATE '2018-04-08', 6, "crespo@gmail.com", 3 ,12),
+(12, 39, DATE '2018-04-08', 6, "hernan@gmail.com", 3 ,12),
 (13, 21, DATE '2021-11-16', 3, "gabriel@gmail.com", 3 ,13),
-(14, 23, DATE '2022-11-13', 6, "batistuta@gmail.com", 3 ,14),
+(14, 23, DATE '2022-11-13', 6, "gabriel@gmail.com", 3 ,14),
 (15, 35, DATE '2023-10-01', 9, "riken@gmail.com", 1 ,15),
 (16, 53, DATE '2023-06-17', 7, "andreas@gmail.com", 3 ,16),
 (17, 44, DATE '2018-03-13', 5, "moller@gmail.com", 3 ,17),
