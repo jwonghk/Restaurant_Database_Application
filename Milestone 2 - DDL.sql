@@ -248,16 +248,16 @@ INSERT INTO Supplied(IName, SID, Cost) VALUES
 
 
 INSERT INTO DishesHad(MID, DName, DType, Price, DateIntroduced) VALUES
-(1, "Chicken Pesto Sandwich", 13.19, '2015-12-17'),
-(1, "Prosciutto Sandwich", 13.19, '2015-12-27'),
-(2, "Bolognese", 13.19, '2015-12-17'),
-(3, "Eggs & Toast", 14.25, '2010-04-25'),
-(4, "Beef Tartare", 40.00, '2017-03-12'),
-(5, "House Pinot Noir (6 oz)", 8.00, '2022-06-01'),
-(6, "9 Course Tasting", 49.00, '2023-02-15'),
-(7, "Cumin Coconut Mussles", 18.00, '2023-03-20'),
-(8, "Khao Soi", 22.00, '2019-07-12'),
-(9, "Thai Mojito", 13.00, '2016-04-27');
+(1, "Chicken Pesto Sandwich", "Side", 13.19, '2015-12-17'),
+(1, "Prosciutto Sandwich", "Side", 13.19, '2015-12-27'),
+(2, "Bolognese", 13.19, "Side", '2015-12-17'),
+(3, "Eggs & Toast", "Breafast", 14.25, '2010-04-25'),
+(4, "Beef Tartare", "Main", 40.00, '2017-03-12'),
+(5, "House Pinot Noir (6 oz)", "Side",  8.00, '2022-06-01'),
+(6, "9 Course Tasting", "Main", 49.00, '2023-02-15'),
+(7, "Cumin Coconut Mussles", "Main", 18.00, '2023-03-20'),
+(8, "Khao Soi", 22.00, "Main", '2019-07-12'),
+(9, "Thai Mojito", 13.00, "Main", '2016-04-27');
 
 
 INSERT INTO Contained(MID, DName, IName, Quantity) VALUES
