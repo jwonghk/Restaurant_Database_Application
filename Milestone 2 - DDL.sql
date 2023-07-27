@@ -202,7 +202,7 @@ INSERT INTO MenusOffered(MID, MType, RID) VALUES
 (6, "Tasting Menu", 4),
 (7, "Daily Special", 5),
 (8, "Soups", 6),
-(9, "Drinks");
+(9, "Drinks", 1);
 
 INSERT INTO Suppliers(SID, SName, SLocation) VALUES
 (1, "Costco Business Centre", "Vancouver, BC, CA"),
@@ -215,10 +215,10 @@ INSERT INTO Ingredients(IName, IType) VALUES
 ("Chicken", "Meat"),
 ("Pesto", "Pantry"),
 ("Prosciutto", "Meat"),
-("Tomatoes", "Produce"),
+("Tomato", "Produce"),
 ("Beef", "Meat"),
 ("Lamb", "Meat"),
-("Eggs", "Eggs"),
+("Eggs", "Meat"),
 ("Bread Slice", "Grains"),
 ("Butter", "Dairy"),
 ("House Pinot Noir", "Alcohol"),
@@ -229,7 +229,7 @@ INSERT INTO Ingredients(IName, IType) VALUES
 ("Noodles", "Grains"),
 ("White Rum", "Alcohol"),
 ("Lime", "Produce");
-("carrot", "Produce");
+("Carrot", "Produce");
 
 
 
@@ -248,16 +248,16 @@ INSERT INTO Supplied(IName, SID, Cost) VALUES
 
 
 INSERT INTO DishesHad(MID, DName, DType, Price, DateIntroduced) VALUES
-(1, "Chicken Pesto Sandwich", 13.19, DATE '2015-12-17'),
-(1, "Prosciutto Sandwich", 13.19, DATE '2015-12-27'),
-(2, "Bolognese", 13.19, DATE '2015-12-17'),
-(3, "Eggs & Toast", 14.25, DATE '2010-04-25'),
-(4, "Beef Tartare", 40.00, DATE '2017-03-12'),
-(5, "House Pinot Noir (6 oz)", 8.00, DATE '2022-06-01'),
-(6, "9 Course Tasting", 49.00, DATE '2023-02-15'),
-(7, "Cumin Coconut Mussles", 18.00, DATE '2023-03-20'),
-(8, "Khao Soi", 22.00, DATE '2019-07-12'),
-(9, "Thai Mojito", 13.00, DATE '2016-04-27');
+(1, "Chicken Pesto Sandwich", 13.19, '2015-12-17'),
+(1, "Prosciutto Sandwich", 13.19, '2015-12-27'),
+(2, "Bolognese", 13.19, '2015-12-17'),
+(3, "Eggs & Toast", 14.25, '2010-04-25'),
+(4, "Beef Tartare", 40.00, '2017-03-12'),
+(5, "House Pinot Noir (6 oz)", 8.00, '2022-06-01'),
+(6, "9 Course Tasting", 49.00, '2023-02-15'),
+(7, "Cumin Coconut Mussles", 18.00, '2023-03-20'),
+(8, "Khao Soi", 22.00, '2019-07-12'),
+(9, "Thai Mojito", 13.00, '2016-04-27');
 
 
 INSERT INTO Contained(MID, DName, IName, Quantity) VALUES
@@ -332,50 +332,50 @@ INSERT INTO ManagersManaged(EID, RID) VALUES
 (18, 5);
 
 INSERT INTO Employed(EID, RID, DateEmployed) VALUES
-(1, 3, DATE '2015-12-17'),
-(2, 1, DATE '2015-12-17'),
-(3, 3, DATE '2015-12-17'),
-(4, 2, DATE '2015-12-17'),
-(5, 3, DATE '2015-12-17'),
-(6, 3, DATE '2015-12-17'),
-(7, 2, DATE '2015-12-17'),
-(8, 4, DATE '2015-12-17'),
-(9, 4, DATE '2015-12-17'),
-(10, 3, DATE '2015-12-17'),
-(11, 5, DATE '2015-12-17'),
-(12, 3, DATE '2015-12-17'),
-(13, 3, DATE '2015-12-17'),
-(14, 3, DATE '2015-12-17'),
-(15, 1, DATE '2015-12-17'),
-(16, 3, DATE '2015-12-17'),
-(17, 3, DATE '2015-12-17'),
-(18, 5, DATE '2015-12-17'),
-(19, 3, DATE '2015-12-17'),
-(20, 3, DATE '2015-12-17');
+(1, 3, '2015-12-17'),
+(2, 1, '2015-12-17'),
+(3, 3, '2015-12-17'),
+(4, 2, '2015-12-17'),
+(5, 3, '2015-12-17'),
+(6, 3, '2015-12-17'),
+(7, 2, '2015-12-17'),
+(8, 4, '2015-12-17'),
+(9, 4, '2015-12-17'),
+(10, 3, '2015-12-17'),
+(11, 5, '2015-12-17'),
+(12, 3, '2015-12-17'),
+(13, 3, '2015-12-17'),
+(14, 3, '2015-12-17'),
+(15, 1, '2015-12-17'),
+(16, 3, '2015-12-17'),
+(17, 3, '2015-12-17'),
+(18, 5, '2015-12-17'),
+(19, 3, '2015-12-17'),
+(20, 3, '2015-12-17');
 
 INSERT INTO CanCook(EID, MID, DName) VALUES
 (2, 1, "Chicken Pesto Sandwich"),
-(2, 1, "Prosciutto Sandwich", 13.19, DATE '2015-12-27'),
-(2, 2, "Bolognese", 13.19, DATE '2015-12-17'),
-(4, 3, "Eggs & Toast", 14.25, DATE '2010-04-25'),
-(5, 4, "Beef Tartare", 40.00, DATE '2017-03-12'),
-(5, 5, "House Pinot Noir (6 oz)", 8.00, DATE '2022-06-01'),
-(5, 7, "Cumin Coconut Mussles", 18.00, DATE '2022-06-11'),
-(8, 6, "9 Course Tasting", 49.00, DATE '2023-02-15'),
-(11, 7, "Cumin Coconut Mussles", 18.00, DATE '2023-03-20'),
-(11, 8, "Khao Soi", 22.00, DATE '2019-07-12'),
-(11, 9, "Thai Mojito", 13.00, DATE '2016-04-27');
+(2, 1, "Prosciutto Sandwich"),
+(2, 2, "Bolognese"),
+(4, 3, "Eggs & Toast"),
+(5, 4, "Beef Tartare"),
+(5, 5, "House Pinot Noir (6 oz)"),
+(5, 7, "Cumin Coconut Mussles"),
+(8, 6, "9 Course Tasting"),
+(11, 7, "Cumin Coconut Mussles"),
+(11, 8, "Khao Soi"),
+(11, 9, "Thai Mojito");
 
 INSERT INTO OrdersPlacedServedTaken(OID, TotalPrice, Date, SatisfactionRating, CEmail, RID, EID) VALUES
-(1, 32, DATE '2023-08-11', 4, "johnny@hotmail.com", 3 ,1),
-(2, 27, DATE '2021-02-11', 8, "peter@gmail.com", 1 ,2),
-(3, 19, DATE '2018-09-03', 8, "jennifer@gmail.com", 3 ,3),
-(4, 22, DATE '2019-11-21', 7, "delpiero@gmail.com", 2 ,4),
-(5, 24, DATE '2021-02-11', 7, "casaraghi@gmail.com", 3 ,5),
-(6, 34, DATE '2021-07-03', 6, "bierhoff@gmail.com", 3 ,6),
-(7, 63, DATE '2022-12-21', 9, "oliver@gmail.com", 2 ,7),
-(8, 24, DATE '2020-07-03', 6, "donald@gmail.com", 4 ,8),
-(9, 25, DATE '2020-12-21', 9, "amy@gmail.com", 4 ,9),
+(1, 32, '2023-08-11', 4, "johnny@hotmail.com", 3 ,1),
+(2, 27, '2021-02-11', 8, "peter@gmail.com", 1 ,2),
+(3, 19, '2018-09-03', 8, "jennifer@gmail.com", 3 ,3),
+(4, 22, '2019-11-21', 7, "delpiero@gmail.com", 2 ,4),
+(5, 24, '2021-02-11', 7, "casaraghi@gmail.com", 3 ,5),
+(6, 34, '2021-07-03', 6, "bierhoff@gmail.com", 3 ,6),
+(7, 63, '2022-12-21', 9, "oliver@gmail.com", 2 ,7),
+(8, 24, '2020-07-03', 6, "donald@gmail.com", 4 ,8),
+(9, 25, '2020-12-21', 9, "amy@gmail.com", 4 ,9),
 ;
 
 INSERT INTO Included(OID, MID, DName) VALUES
