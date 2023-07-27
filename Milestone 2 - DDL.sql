@@ -367,6 +367,13 @@ INSERT INTO CanCook(EID, MID, DName) VALUES
 (11, 9, "Thai Mojito", 13.00, DATE '2016-04-27');
 
 INSERT INTO OrdersPlacedServedTaken(OID, TotalPrice, Date, SatisfactionRating, CEmail, RID, EID) VALUES
+(1, 32, DATE '2023-08-11', 4, "johnny@hotmail.com", 3 ,1),
+(2, 27, DATE '2021-02-11', 8, "peter@gmail.com", 1 ,2),
+(3, 19, DATE '2018-09-03', 8, "jennifer@gmail.com", 3 ,3),
+(4, 22, DATE '2019-11-21', 7, "delpiero@gmail.com", 2 ,4),
+(5, 24, DATE '2021-02-11', 7, "casaraghi@gmail.com", 3 ,5),
+(6, 34, DATE '2021-07-03', 6, "bierhoff@gmail.com", 3 ,6),
+(7, 63, DATE '2022-12-21', 9, "oliver@gmail.com", 2 ,7),
 ;
 
 INSERT INTO Included(OID, MID, DName) VALUES
