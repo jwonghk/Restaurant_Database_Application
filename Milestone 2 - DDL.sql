@@ -217,6 +217,7 @@ INSERT INTO Ingredients(IName, IType) VALUES
 ("Prosciutto", "Meat"),
 ("Tomatoes", "Produce"),
 ("Beef", "Meat"),
+("Lamb", "Meat"),
 ("Eggs", "Eggs"),
 ("Bread Slice", "Grains"),
 ("Butter", "Dairy"),
@@ -228,6 +229,9 @@ INSERT INTO Ingredients(IName, IType) VALUES
 ("Noodles", "Grains"),
 ("White Rum", "Alcohol"),
 ("Lime", "Produce");
+("carrot", "Produce");
+
+
 
 INSERT INTO Supplied(IName, SID, Cost) VALUES
 ("Chicken", 1, 50),
@@ -241,6 +245,7 @@ INSERT INTO Supplied(IName, SID, Cost) VALUES
 ("Butter", 4, 14),
 ("Peanut Butter", 3, 12),
 ("Coconut Milk", 1, 30);
+
 
 INSERT INTO DishesHad(MID, DName, DType, Price, DateIntroduced) VALUES
 (1, "Chicken Pesto Sandwich", 13.19, DATE '2015-12-17'),
@@ -355,6 +360,7 @@ INSERT INTO CanCook(EID, MID, DName) VALUES
 (4, 3, "Eggs & Toast", 14.25, DATE '2010-04-25'),
 (5, 4, "Beef Tartare", 40.00, DATE '2017-03-12'),
 (5, 5, "House Pinot Noir (6 oz)", 8.00, DATE '2022-06-01'),
+(5, 7, "Cumin Coconut Mussles", 18.00, DATE '2022-06-11'),
 (8, 6, "9 Course Tasting", 49.00, DATE '2023-02-15'),
 (11, 7, "Cumin Coconut Mussles", 18.00, DATE '2023-03-20'),
 (11, 8, "Khao Soi", 22.00, DATE '2019-07-12'),
