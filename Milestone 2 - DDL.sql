@@ -83,11 +83,12 @@ CREATE TABLE Customers(
 CREATE TABLE EmployeesMain(
     EID INTEGER PRIMARY KEY,
     EName CHAR(32),
-    AnnualSalary REAL
+    HourlyWage REAL,
+    HoursPerWeek REAL
 );
 
-CREATE TABLE EmployeesSalary(
-    AnnualSalary REAL PRIMARY KEY,
+CREATE TABLE EmployeesFT(
+    HoursPerWeek REAL PRIMARY KEY,
     FulltimeStatus BOOLEAN
 );
 
@@ -300,56 +301,48 @@ INSERT INTO Customers(CEmail, PhoneNo, CName) VALUES
 ("gomez@gmail.com", "237-333-1010", "Mario Gomez")
 ("jurgen@gmail.com", "237-000-1111", "Jurgen Klinsmen");
 
-INSERT INTO EmployeesMain(EID, EName, AnnualSalary) VALUES
-(1, "Alice Johnson", 35000),
-(2, "Mark Ramirez", 30000),
-(3, "Sarah Thompson", 32000),
-(4, "James Lee", 28000),
-(5, "Emily Martinez", 33000),
-(6, "Michael Robinson", 29000),
-(7, "Jessica Nguyen", 31000),
-(8, "William Patel", 27000),
-(9, "Jennifer Smith", 64000),
-(10, "Robert Kim", 30500),
-(11, "Laura Garcia", 33500),
-(12, "Daniel Jackson", 28500),
-(13, "Samantha Chen", 31500),
-(14, "Christopher Brown", 29500),
-(15, "Elizabeth Wilson", 32500),
-(16, "Thomas Davis", 10500),
-(17, "Ashley Rodriguez", 34500),
-(18, "Kevin Taylor", 30200),
-(19, "Amanda Wright", 33200),
-(20, "Ryan Lewis", 28200);
+INSERT INTO EmployeesMain(EID, EName, HourlyWage, HoursPerWeek) VALUES
+(1, "Alice Johnson", 30, 50),
+(2, "Mark Ramirez", 26.50, 20),
+(3, "Sarah Thompson", 14, 5),
+(4, "James Lee", 27, 35),
+(5, "Emily Martinez", 16.25, 10),
+(6, "Michael Robinson", 16.5, 37.5),
+(7, "Jessica Nguyen", 28.50, 50),
+(8, "William Patel", 22.30, 20),
+(9, "Jennifer Smith", 32.75, 40),
+(10, "Robert Kim", 15, 35),
+(11, "Laura Garcia", 32.50, 37.5),
+(12, "Daniel Jackson", 17, 20),
+(13, "Samantha Chen", 16, 10),
+(14, "Christopher Brown", 18.5, 40),
+(15, "Elizabeth Wilson", 28.25, 40),
+(16, "Thomas Davis", 16.30, 35),
+(17, "Ashley Rodriguez", 15.50, 20),
+(18, "Kevin Taylor", 29.50, 40),
+(19, "Amanda Wright", 17.25, 35),
+(20, "Ryan Lewis", 17.25, 37.5);
 
-INSERT INTO EmployeesSalary(AnnualSalary, FulltimeStatus) VALUES
-(35000, 1),
-(30000, 1),
-(32000, 1),
-(28000, 0),
-(33000, 1)
-(29000, 0),
-(31000, 1),
-(27000, 0),
-(64000, 1),
-(30500, 1),
-(33500, 1),
-(28500, 0),
-(31500, 1),
-(29500, 0),
-(32500, 1),
-(10500, 0),
-(34500, 1),
-(30200, 1),
-(33200, 1),
-(28200, 0);
+INSERT INTO EmployeesFT(HoursPerWeek, FulltimeStatus) VALUES
+(37.5, 1),
+(40, 1),
+(50, 1),
+(35, 1),
+(5, 0)
+(10, 0),
+(20, 1);
 
 INSERT INTO Servers(EID, AlcoholServingCertification) VALUES
-(1, 1),
-(3, 0),
-(6, 0),
-(10, 1),
-(14, 1);
+(3, 1),
+(6, 1),
+(10, 0),
+(12, 1),
+(13, 0),
+(14, 0),
+(16, 1),
+(17, 0),
+(19, 1),
+(20, 0);
 
 INSERT INTO Cooks(EID, Rank) VALUES
 (2, 'Head Chef'),
