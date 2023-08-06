@@ -59,8 +59,8 @@ CREATE TABLE Supplied(
     SID INTEGER,
     Cost REAL,
     PRIMARY KEY (IName, SID),
-    FOREIGN KEY (IName) REFERENCES Ingredients(IName),
-        ON DELETE CASCADE
+    FOREIGN KEY (IName) REFERENCES Ingredients(IName)
+        ON DELETE CASCADE,
     FOREIGN KEY (SID) REFERENCES Suppliers(SID) 
         ON DELETE CASCADE 
 );
@@ -160,8 +160,8 @@ CREATE TABLE Orders_Placed_Served_Taken(
     CEmail CHAR(32) NOT NULL,
     RID INTEGER NOT NULL,
     EID INTEGER NOT NULL,
-    FOREIGN KEY (CEmail) REFERENCES Customers(CEmail), 
-        ON DELETE CASCADE, 
+    FOREIGN KEY (CEmail) REFERENCES Customers(CEmail)
+        ON DELETE CASCADE,
     FOREIGN KEY (RID) REFERENCES Restaurants_Main(RID) 
         ON DELETE CASCADE,
     FOREIGN KEY (EID) REFERENCES Servers(EID) 
@@ -221,6 +221,7 @@ INTO Suppliers(SID, SName, SLocation) VALUES (4, 'Local Farm', 'Delta, BC, CA')
 INTO Suppliers(SID, SName, SLocation) VALUES (5, 'Italian Import Specialist', 'Vancouver, BC, CA')
 SELECT *
     FROM dual;
+
 
 INSERT ALL 
 INTO Ingredients(IName, IType) VALUES ('Chicken', 'Meat')
