@@ -60,7 +60,7 @@ CREATE TABLE Supplied(
     Cost REAL,
     PRIMARY KEY (IName, SID),
     FOREIGN KEY (IName) REFERENCES Ingredients(IName),
-        -- ON DELETE NO ACTION
+        ON DELETE CASCADE
     FOREIGN KEY (SID) REFERENCES Suppliers(SID) 
         ON DELETE CASCADE 
 );
@@ -85,7 +85,7 @@ CREATE TABLE Contained(
     FOREIGN KEY (MID, DName) REFERENCES Dishes_Had(MID, DName) 
         ON DELETE CASCADE, 
     FOREIGN KEY (IName) REFERENCES Ingredients(IName) 
-        -- ON DELETE NO ACTION 
+        ON DELETE CASCADE
 );
 
 CREATE TABLE Customers(
@@ -127,7 +127,7 @@ CREATE TABLE Managers_Managed(
     FOREIGN KEY (EID) REFERENCES Employees_Main(EID) 
         ON DELETE CASCADE, 
     FOREIGN KEY (RID) REFERENCES Restaurants_Main(RID) 
-        -- ON DELETE NO ACTION 
+        ON DELETE CASCADE
 );
 
 CREATE TABLE Employed(
@@ -138,7 +138,7 @@ CREATE TABLE Employed(
     FOREIGN KEY (EID) REFERENCES Employees_Main(EID) 
         ON DELETE CASCADE, 
     FOREIGN KEY (RID) REFERENCES Restaurants_Main(RID) 
-        -- ON DELETE NO ACTION 
+        ON DELETE CASCADE
 );
 
 CREATE TABLE Can_Cook(
@@ -161,11 +161,11 @@ CREATE TABLE Orders_Placed_Served_Taken(
     RID INTEGER NOT NULL,
     EID INTEGER NOT NULL,
     FOREIGN KEY (CEmail) REFERENCES Customers(CEmail), 
-        -- ON DELETE SET DEFAULT, 
+        ON DELETE CASCADE, 
     FOREIGN KEY (RID) REFERENCES Restaurants_Main(RID) 
         ON DELETE CASCADE,
     FOREIGN KEY (EID) REFERENCES Servers(EID) 
-        -- ON DELETE SET DEFAULT 
+        ON DELETE CASCADE
 );
 
 CREATE TABLE Included(
@@ -176,9 +176,8 @@ CREATE TABLE Included(
     FOREIGN KEY (OID) REFERENCES Orders_Placed_Served_Taken(OID) 
         ON DELETE CASCADE, 
     FOREIGN KEY (MID, DName) REFERENCES Dishes_Had(MID, DName) 
-        -- ON DELETE SET DEFAULT 
+        ON DELETE CASCADE
 );
-
 
 -- INSERTIONS INTO TABLES
 
@@ -223,7 +222,6 @@ INTO Suppliers(SID, SName, SLocation) VALUES (5, 'Italian Import Specialist', 'V
 SELECT *
     FROM dual;
 
-
 INSERT ALL 
 INTO Ingredients(IName, IType) VALUES ('Chicken', 'Meat')
 INTO Ingredients(IName, IType) VALUES ('Pesto', 'Pantry')
@@ -245,7 +243,6 @@ INTO Ingredients(IName, IType) VALUES ('Lime', 'Produce')
 INTO Ingredients(IName, IType) VALUES ('Carrot', 'Produce')
 SELECT *
     FROM dual;
-
 
 INSERT ALL
 INTO Supplied(IName, SID, Cost) VALUES ('Chicken', 1, 50)
@@ -277,7 +274,6 @@ INTO Dishes_Had(MID, DName, DType, Price, DateIntroduced) VALUES (8, 'Khao Soi',
 INTO Dishes_Had(MID, DName, DType, Price, DateIntroduced) VALUES (9, 'Thai Mojito', 'Main', 13.00, DATE '2016-04-27')
 SELECT *
     FROM dual;
-
 
 INSERT ALL
 INTO Contained(MID, DName, IName, Quantity) VALUES (1, 'Chicken Pesto Sandwich', 'Chicken', '100 g')
