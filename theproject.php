@@ -100,6 +100,16 @@
 
         <hr />
 
+        <h2>Find Suppliers That Supply Every Ingredient</h2>
+        <p>Get a list of suppliers that supply all known ingredients in the database.</p>
+        <form method="GET" action="theproject.php"> <!--refresh page when submitted-->
+            <input type="hidden" id="divisionRequest" name="divisionRequest">
+
+            <input type="submit" value="Submit" name="divisionTable"></p>
+        </form>
+
+        <hr />
+
         <h2>Count the Tuples in Restaurants Manager's Tables</h2>
         <p>Get the number of rows in each instance in the database.</p>
         <form method="GET" action="theproject.php"> <!--refresh page when submitted-->
@@ -111,6 +121,7 @@
         <hr />
 
         <h2>View all Tuples in Selected Table</h2>
+        <p>Choose from a table in the database to view its rows.</p>
         <form method="GET" action="theproject.php"> <!--refresh page when submitted-->
             <input type="hidden" id="viewTupleRequest" name="viewTupleRequest">
             <select name="Table" required>
@@ -452,9 +463,9 @@
             executePlainSQL("INSERT ALL 
                 INTO Restaurants_Name(Cuisine, RName) VALUES ('Italian', 'Jo''s Italian Deli')
                 INTO Restaurants_Name(Cuisine, RName) VALUES ('Brunch', 'Nelly''s Brunch Pantry')
-                INTO Restaurants_Name(Cuisine, RName) VALUES('French', 'Les Amis')
+                INTO Restaurants_Name(Cuisine, RName) VALUES ('French', 'Les Amis')
                 INTO Restaurants_Name(Cuisine, RName) VALUES ('Malaysian', 'Banana Leaf')
-                INTO Restaurants_Name(Cuisine, RName) VALUES('Thai', 'PAI')
+                INTO Restaurants_Name(Cuisine, RName) VALUES ('Thai', 'PAI')
                 SELECT *
                   FROM dual"
             );
@@ -464,11 +475,11 @@
                 INTO Menus_Offered(MID, MType, RID) VALUES (2, 'Pastas', 1)
                 INTO Menus_Offered(MID, MType, RID) VALUES (3, 'Brunch', 2)
                 INTO Menus_Offered(MID, MType, RID) VALUES (4, 'Dinner', 3)
-                INTO Menus_Offered(MID, MType, RID) VALUES(5, 'Happy Hour', 3)
-                INTO Menus_Offered(MID, MType, RID) VALUES(6, 'Tasting Menu', 4)
-                INTO Menus_Offered(MID, MType, RID) VALUES(7, 'Daily Special', 5)
+                INTO Menus_Offered(MID, MType, RID) VALUES (5, 'Happy Hour', 3)
+                INTO Menus_Offered(MID, MType, RID) VALUES (6, 'Tasting Menu', 4)
+                INTO Menus_Offered(MID, MType, RID) VALUES (7, 'Daily Special', 5)
                 INTO Menus_Offered(MID, MType, RID) VALUES (8, 'Soups', 6)
-                INTO Menus_Offered(MID, MType, RID) VALUES(9, 'Drinks', 1)
+                INTO Menus_Offered(MID, MType, RID) VALUES (9, 'Drinks', 1)
                 SELECT *
                   FROM dual"
             );
@@ -508,16 +519,30 @@
 
             executePlainSQL("INSERT ALL
                 INTO Supplied(IName, SID, Cost) VALUES ('Chicken', 1, 50)
-                INTO Supplied(IName, SID, Cost) VALUES('Pesto', 5, 20)
-                INTO Supplied(IName, SID, Cost) VALUES('Prosciutto', 5, 30)
-                INTO Supplied(IName, SID, Cost) VALUES('Tomatoes', 5, 10.50)
-                INTO Supplied(IName, SID, Cost) VALUES('Beef', 2, 40)
-                INTO Supplied(IName, SID, Cost) VALUES('Beef', 3, 50)
-                INTO Supplied(IName, SID, Cost) VALUES('Eggs', 1, 10.32)
-                INTO Supplied(IName, SID, Cost) VALUES('Bread Slice', 1, 0.1)
-                INTO Supplied(IName, SID, Cost) VALUES('Butter', 4, 14)
-                INTO Supplied(IName, SID, Cost) VALUES('Peanut Butter', 3, 12)
-                INTO Supplied(IName, SID, Cost) VALUES('Coconut Milk', 1, 30)
+                INTO Supplied(IName, SID, Cost) VALUES ('Pesto', 1, 25)
+                INTO Supplied(IName, SID, Cost) VALUES ('Prosciutto', 1, 25)
+                INTO Supplied(IName, SID, Cost) VALUES ('Tomatoes', 1, 25)
+                INTO Supplied(IName, SID, Cost) VALUES ('Beef', 1, 30)
+                INTO Supplied(IName, SID, Cost) VALUES ('Lamb', 1, 35)
+                INTO Supplied(IName, SID, Cost) VALUES ('Eggs', 1, 12.59)
+                INTO Supplied(IName, SID, Cost) VALUES ('Bread Slice', 1, 0.10)
+                INTO Supplied(IName, SID, Cost) VALUES ('Butter', 1, 20)
+                INTO Supplied(IName, SID, Cost) VALUES ('House Pinot Noir', 1, 25)
+                INTO Supplied(IName, SID, Cost) VALUES ('Papaya', 1, 30)
+                INTO Supplied(IName, SID, Cost) VALUES ('Peanut Butter', 1, 19.99)
+                INTO Supplied(IName, SID, Cost) VALUES ('Coconut Milk', 1, 22.50)
+                INTO Supplied(IName, SID, Cost) VALUES ('Mussles', 1, 50)
+                INTO Supplied(IName, SID, Cost) VALUES ('Noodles', 1, 15)
+                INTO Supplied(IName, SID, Cost) VALUES ('White Rum', 1, 25)
+                INTO Supplied(IName, SID, Cost) VALUES ('Lime', 1, 15)
+                INTO Supplied(IName, SID, Cost) VALUES ('Carrot', 1, 10)
+                INTO Supplied(IName, SID, Cost) VALUES ('Pesto', 5, 20)
+                INTO Supplied(IName, SID, Cost) VALUES ('Prosciutto', 5, 30)
+                INTO Supplied(IName, SID, Cost) VALUES ('Tomatoes', 5, 10.50)
+                INTO Supplied(IName, SID, Cost) VALUES ('Beef', 2, 40)
+                INTO Supplied(IName, SID, Cost) VALUES ('Beef', 3, 50)
+                INTO Supplied(IName, SID, Cost) VALUES ('Butter', 4, 14)
+                INTO Supplied(IName, SID, Cost) VALUES ('Peanut Butter', 3, 12)
                 SELECT *
                     FROM dual"
             );
@@ -624,8 +649,8 @@
                 INTO Servers(EID, AlcoholServingCertification) VALUES (1, 1)
                 INTO Servers(EID, AlcoholServingCertification) VALUES (2, 1)
                 INTO Servers(EID, AlcoholServingCertification) VALUES (3, 1)
-                INTO Servers(EID, AlcoholServingCertification) VALUES (4, 0)
-                INTO Servers(EID, AlcoholServingCertification) VALUES (5, 0)
+                INTO Servers(EID, AlcoholServingCertification) VALUES (4, 1)
+                INTO Servers(EID, AlcoholServingCertification) VALUES (5, 1)
                 INTO Servers(EID, AlcoholServingCertification) VALUES (6, 1)
                 INTO Servers(EID, AlcoholServingCertification) VALUES (7, 1)
                 INTO Servers(EID, AlcoholServingCertification) VALUES (8, 1)
@@ -635,7 +660,7 @@
                 INTO Servers(EID, AlcoholServingCertification) VALUES (12, 1)
                 INTO Servers(EID, AlcoholServingCertification) VALUES (13, 0)
                 INTO Servers(EID, AlcoholServingCertification) VALUES (14, 0)
-                INTO Servers(EID, AlcoholServingCertification) VALUES (15, 0)
+                INTO Servers(EID, AlcoholServingCertification) VALUES (15, 1)
                 INTO Servers(EID, AlcoholServingCertification) VALUES (16, 1)
                 INTO Servers(EID, AlcoholServingCertification) VALUES (17, 0)
                 INTO Servers(EID, AlcoholServingCertification) VALUES (18, 1)
@@ -650,7 +675,7 @@
                 INTO Cooks(EID, Rank) VALUES (4, 'Head Chef')
                 INTO Cooks(EID, Rank) VALUES (5, 'Line Cook')
                 INTO Cooks(EID, Rank) VALUES (8, 'Sous Chef')
-                INTO Cooks(EID, Rank) VALUES(11, 'Head Chef')
+                INTO Cooks(EID, Rank) VALUES (11, 'Head Chef')
                 SELECT *
                     FROM dual"
             );
@@ -668,8 +693,10 @@
             executePlainSQL("INSERT ALL 
                 INTO Employed(EID, RID, DateEmployed) VALUES (1, 3, DATE '2015-12-17')
                 INTO Employed(EID, RID, DateEmployed) VALUES (2, 1, DATE '2015-12-17')
+                INTO Employed(EID, RID, DateEmployed) VALUES (3, 1, DATE '2015-12-20')
                 INTO Employed(EID, RID, DateEmployed) VALUES (3, 3, DATE '2015-12-17')
                 INTO Employed(EID, RID, DateEmployed) VALUES (4, 2, DATE '2015-12-17')
+                INTO Employed(EID, RID, DateEmployed) VALUES (6, 2, DATE '2015-11-15')
                 INTO Employed(EID, RID, DateEmployed) VALUES (5, 3, DATE '2015-12-17')
                 INTO Employed(EID, RID, DateEmployed) VALUES (6, 3, DATE '2015-12-17')
                 INTO Employed(EID, RID, DateEmployed) VALUES (7, 2, DATE '2015-12-17')
@@ -693,7 +720,7 @@
             executePlainSQL("INSERT ALL 
                 INTO Can_Cook(EID, MID, DName) VALUES (2, 1, 'Chicken Pesto Sandwich')
                 INTO Can_Cook(EID, MID, DName) VALUES (2, 1, 'Prosciutto Sandwich')
-                INTO Can_Cook(EID, MID, DName) VALUES(2, 2, 'Bolognese')
+                INTO Can_Cook(EID, MID, DName) VALUES (2, 2, 'Bolognese')
                 INTO Can_Cook(EID, MID, DName) VALUES (4, 3, 'Eggs and Toast')
                 INTO Can_Cook(EID, MID, DName) VALUES (5, 4, 'Beef Tartare')
                 INTO Can_Cook(EID, MID, DName) VALUES (5, 5, 'House Pinot Noir (6 oz)')
@@ -708,65 +735,68 @@
 
             executePlainSQL("INSERT ALL
                 INTO Orders_Placed_Served_Taken(OID, TotalPrice, Dates, SatisfactionRating, CEmail, RID, EID) 
-                VALUES (1, 13.19, DATE '2023-08-11', 4, 'johnny@hotmail.com', 3 ,3)
+                    VALUES (1, 26.38, DATE '2023-08-11', 4, 'johnny@hotmail.com', 1 ,3)
                 INTO Orders_Placed_Served_Taken(OID, TotalPrice, Dates, SatisfactionRating, CEmail, RID, EID) 
-                VALUES (2, 13.19, DATE '2021-02-11', 8, 'peter@gmail.com', 1 ,2)
+                    VALUES (2, 13.19, DATE '2021-02-11', 8, 'peter@gmail.com', 1 ,2)
                 INTO Orders_Placed_Served_Taken(OID, TotalPrice, Dates, SatisfactionRating, CEmail, RID, EID) 
-                VALUES (3, 14.25, DATE '2018-09-03', 8, 'jennifer@gmail.com', 3 ,3)
+                    VALUES (3, 14.25, DATE '2018-09-03', 8, 'jennifer@gmail.com', 3 ,3)
                 INTO Orders_Placed_Served_Taken(OID, TotalPrice, Dates, SatisfactionRating, CEmail, RID, EID) 
-                VALUES (4, 13.19, DATE '2019-11-21', 7, 'delpiero@gmail.com', 2 ,4)
+                    VALUES (4, 13.19, DATE '2019-11-21', 7, 'delpiero@gmail.com', 2 ,4)
                 INTO Orders_Placed_Served_Taken(OID, TotalPrice, Dates, SatisfactionRating, CEmail, RID, EID) 
-                VALUES (5, 13.19, DATE '2021-02-11', 7, 'casaraghi@gmail.com', 3 ,5)
+                    VALUES (5, 13.19, DATE '2021-02-11', 7, 'casaraghi@gmail.com', 3 ,5)
                 INTO Orders_Placed_Served_Taken(OID, TotalPrice, Dates, SatisfactionRating, CEmail, RID, EID) 
-                VALUES (6, 22.00, DATE '2021-07-03', 6, 'bierhoff@gmail.com', 3 ,6)
+                    VALUES (6, 22.00, DATE '2021-07-03', 6, 'bierhoff@gmail.com', 3 ,6)
                 INTO Orders_Placed_Served_Taken(OID, TotalPrice, Dates, SatisfactionRating, CEmail, RID, EID) 
-                VALUES (7, 13.00, DATE '2022-12-21', 4, 'oliver@gmail.com', 2 ,7)
+                    VALUES (7, 13.00, DATE '2022-12-21', 4, 'oliver@gmail.com', 2 ,7)
                 INTO Orders_Placed_Served_Taken(OID, TotalPrice, Dates, SatisfactionRating, CEmail, RID, EID) 
-                VALUES (8, 14.25, DATE '2020-07-03', 6, 'donald@gmail.com', 4 ,8)
+                    VALUES (8, 14.25, DATE '2020-07-03', 6, 'donald@gmail.com', 4 ,8)
                 INTO Orders_Placed_Served_Taken(OID, TotalPrice, Dates, SatisfactionRating, CEmail, RID, EID) 
-                VALUES (9, 18.00, DATE '2020-12-21', 9, 'amy@gmail.com', 4 ,9)
+                    VALUES (9, 18.00, DATE '2020-12-21', 9, 'amy@gmail.com', 4 ,9)
                 INTO Orders_Placed_Served_Taken(OID, TotalPrice, Dates, SatisfactionRating, CEmail, RID, EID) 
-                VALUES (10, 18.00, DATE '2020-12-21', 9, 'schevechenko@gmail.com', 3 ,10)
+                    VALUES (10, 18.00, DATE '2020-12-21', 9, 'schevechenko@gmail.com', 3 ,10)
                 INTO Orders_Placed_Served_Taken(OID, TotalPrice, Dates, SatisfactionRating, CEmail, RID, EID) 
-                VALUES (11, 14.25, DATE '2019-03-24', 7, 'hernan@gmail.com', 5 ,11)
+                    VALUES (11, 14.25, DATE '2019-03-24', 7, 'hernan@gmail.com', 5 ,11)
                 INTO Orders_Placed_Served_Taken(OID, TotalPrice, Dates, SatisfactionRating, CEmail, RID, EID) 
-                VALUES (12, 18.00, DATE '2018-04-08', 6, 'hernan@gmail.com', 3 ,12)
+                    VALUES (12, 18.00, DATE '2018-04-08', 6, 'hernan@gmail.com', 3 ,12)
                 INTO Orders_Placed_Served_Taken(OID, TotalPrice, Dates, SatisfactionRating, CEmail, RID, EID) 
-                VALUES (13, 22.00, DATE '2021-11-16', 3, 'gabriel@gmail.com', 3 ,13)
+                    VALUES (13, 22.00, DATE '2021-11-16', 3, 'gabriel@gmail.com', 3 ,13)
                 INTO Orders_Placed_Served_Taken(OID, TotalPrice, Dates, SatisfactionRating, CEmail, RID, EID) 
-                VALUES (14, 40.00, DATE '2022-11-13', 6, 'gabriel@gmail.com', 3 ,14)
+                    VALUES (14, 40.00, DATE '2022-11-13', 6, 'gabriel@gmail.com', 3 ,14)
                 INTO Orders_Placed_Served_Taken(OID, TotalPrice, Dates, SatisfactionRating, CEmail, RID, EID) 
-                VALUES (15, 13.19, DATE '2023-10-01', 9, 'riken@gmail.com', 1 ,15)
+                    VALUES (15, 13.19, DATE '2023-10-01', 9, 'riken@gmail.com', 1 ,15)
                 INTO Orders_Placed_Served_Taken(OID, TotalPrice, Dates, SatisfactionRating, CEmail, RID, EID) 
-                VALUES (16, 49.00, DATE '2023-06-17', 7, 'moller@gmail.com', 3 ,16)
+                    VALUES (16, 49.00, DATE '2023-06-17', 7, 'moller@gmail.com', 3 ,16)
                 INTO Orders_Placed_Served_Taken(OID, TotalPrice, Dates, SatisfactionRating, CEmail, RID, EID) 
-                VALUES (17, 22.00, DATE '2018-03-13', 5, 'moller@gmail.com', 3 ,17)
+                    VALUES (17, 22.00, DATE '2018-03-13', 5, 'moller@gmail.com', 3 ,17)
                 INTO Orders_Placed_Served_Taken(OID, TotalPrice, Dates, SatisfactionRating, CEmail, RID, EID) 
-                VALUES (18, 14.25, DATE '2023-03-13', 7, 'moller@gmail.com', 3 ,17)
+                    VALUES (18, 14.25, DATE '2023-03-13', 7, 'moller@gmail.com', 3 ,17)
                 INTO Orders_Placed_Served_Taken(OID, TotalPrice, Dates, SatisfactionRating, CEmail, RID, EID) 
-                VALUES (19, 22.00, DATE '2023-03-13', 7, 'gabriel@gmail.com', 3 ,17)
+                    VALUES (19, 22.00, DATE '2023-03-13', 7, 'gabriel@gmail.com', 3 ,17)
                 INTO Orders_Placed_Served_Taken(OID, TotalPrice, Dates, SatisfactionRating, CEmail, RID, EID) 
-                VALUES (20, 49.00, DATE '2020-02-23', 7, 'gomez@gmail.com', 3 ,19)
+                    VALUES (20, 49.00, DATE '2020-02-23', 7, 'gomez@gmail.com', 3 ,19)
                 INTO Orders_Placed_Served_Taken(OID, TotalPrice, Dates, SatisfactionRating, CEmail, RID, EID) 
-                VALUES(21, 49.00, DATE '2022-07-10', 8, 'jurgen@gmail.com', 3 ,20)
+                    VALUES(21, 49.00, DATE '2022-07-10', 8, 'jurgen@gmail.com', 3 ,20)
                 INTO Orders_Placed_Served_Taken(OID, TotalPrice, Dates, SatisfactionRating, CEmail, RID, EID) 
-                VALUES (22, 14.25, DATE '2023-06-17', 7, 'gomez@gmail.com', 5 ,11)
+                    VALUES (22, 14.25, DATE '2023-06-17', 7, 'gomez@gmail.com', 5 ,11)
                 INTO Orders_Placed_Served_Taken(OID, TotalPrice, Dates, SatisfactionRating, CEmail, RID, EID) 
-                VALUES (23, 13.19, DATE '2023-06-17', 8, 'jurgen@gmail.com', 5 ,11)
+                    VALUES (23, 13.19, DATE '2023-06-17', 8, 'jurgen@gmail.com', 5 ,11)
                 INTO Orders_Placed_Served_Taken(OID, TotalPrice, Dates, SatisfactionRating, CEmail, RID, EID) 
-                VALUES (24, 13.19, DATE '2023-06-17', 7, 'bierhoff@gmail.com', 5 ,11)
+                    VALUES (24, 13.19, DATE '2023-06-17', 7, 'bierhoff@gmail.com', 5 ,11)
                 INTO Orders_Placed_Served_Taken(OID, TotalPrice, Dates, SatisfactionRating, CEmail, RID, EID) 
-                VALUES (25, 8.00, DATE '2023-07-26', 5, 'jurgen@gmail.com', 3 ,12)
+                    VALUES (25, 8.00, DATE '2023-07-26', 5, 'jurgen@gmail.com', 3 ,12)
                 INTO Orders_Placed_Served_Taken(OID, TotalPrice, Dates, SatisfactionRating, CEmail, RID, EID) 
-                VALUES (26, 8.00, DATE '2023-07-26', 5, 'gomez@gmail.com', 3 ,12)
+                    VALUES (26, 8.00, DATE '2023-07-26', 5, 'gomez@gmail.com', 3 ,12)
                 INTO Orders_Placed_Served_Taken(OID, TotalPrice, Dates, SatisfactionRating, CEmail, RID, EID)
                     VALUES (27, 8.00, DATE '2023-07-27', 6, 'bierhoff@gmail.com', 3 ,12)
+                INTO Orders_Placed_Served_Taken(OID, TotalPrice, Dates, SatisfactionRating, CEmail, RID, EID) 
+                    VALUES (28, 13.19, DATE '2023-08-12', 7, 'johnny@hotmail.com', 1 ,3)
                 SELECT *
                     FROM dual"
             );
 
             executePlainSQL("INSERT ALL 
                 INTO Included(OID, MID, DName) VALUES (1, 1, 'Chicken Pesto Sandwich')
+                INTO Included(OID, MID, DName) VALUES (1, 1, 'Prosciutto Sandwich')
                 INTO Included(OID, MID, DName) VALUES (2, 1, 'Prosciutto Sandwich')
                 INTO Included(OID, MID, DName) VALUES (3, 3, 'Eggs and Toast')
                 INTO Included(OID, MID, DName) VALUES (4, 2, 'Bolognese')
@@ -793,6 +823,7 @@
                 INTO Included(OID, MID, DName) VALUES (25, 5, 'House Pinot Noir (6 oz)')
                 INTO Included(OID, MID, DName) VALUES (26, 5, 'House Pinot Noir (6 oz)')
                 INTO Included(OID, MID, DName) VALUES (27, 5, 'House Pinot Noir (6 oz)')
+                INTO Included(OID, MID, DName) VALUES (28, 2, 'Bolognese')
                 SELECT *
                     FROM dual"
             );
@@ -863,7 +894,7 @@
                 }
             }
 
-            // Insert the cook tuple into Cooks, if it doesn't exist already
+            // Insert the cook tuple into Cooks
             $cookTuple = array(
                 ":bind1" => $EID,
                 ":bind2" => $Rank
@@ -967,7 +998,7 @@
             echo "</table>";
 
             echo '<input type="hidden" id="updateQueryHelper" name="updateQueryHelper">';
-            echo '<input type="submit" value="Update Employee" name="updateHelperubmit"></p>';
+            echo '<input type="submit" value="Update Employee" name="updateHelperSubmit"></p>';
             echo "</form>";
         }
 
@@ -1005,9 +1036,27 @@
             echo "</br>";
         }
 
-        function handleCountRequest() {
+        function handleDivisionRequest() {
             global $db_conn;
 
+            $result = executePlainSQL("SELECT S.SID, S.SName
+                                        FROM Suppliers S
+                                        WHERE NOT EXISTS (
+                                            SELECT I.IName
+                                            FROM Ingredients I
+                                            WHERE NOT EXISTS (
+                                                SELECT SP.SID
+                                                FROM Supplied SP
+                                                WHERE SP.SID = S.SID
+                                                AND SP.IName = I.IName
+                                            )
+                                        )
+                                      ");
+            printResult($result);
+        }
+
+        function handleCountRequest() {
+            global $db_conn;
             $table_names = executePlainSQL("SELECT table_name FROM user_tables");
 
             while (($name = oci_fetch_row($table_names)) != false) {
@@ -1045,6 +1094,8 @@
                 }
                 echo "</table>";
             } else {
+                echo "</br>";
+                echo "</br>";
                 echo "No data found.";
             }
         }
@@ -1072,7 +1123,9 @@
 	// A better coding practice is to have one method that reroutes your requests accordingly. It will make it easier to add/remove functionality.
         function handleGETRequest() {
             if (connectToDB()) {
-                if (array_key_exists('countTuples', $_GET)) {
+                if (array_key_exists('divisionTable', $_GET)) {
+                    handleDivisionRequest();
+                } else if (array_key_exists('countTuples', $_GET)) {
                     handleCountRequest();
                 } else if (array_key_exists('viewTuples', $_GET)) {
                     handleViewRequest();
@@ -1085,10 +1138,11 @@
             isset($_POST['insertSubmit']) || 
             isset($_POST['deleteSubmit']) ||
             isset($_POST['updateSubmit']) ||
-            isset($_POST['updateHelperubmit'])
+            isset($_POST['updateHelperSubmit'])
             ) {
             handlePOSTRequest();
-        } else if (isset($_GET['countTupleRequest']) ||
+        } else if (isset($_GET['divisionRequest']) ||
+                   isset($_GET['countTupleRequest']) ||
                    isset($_GET['viewTupleRequest'])
             ) {
             handleGETRequest();
