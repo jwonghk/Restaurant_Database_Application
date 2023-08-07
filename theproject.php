@@ -103,7 +103,38 @@
         <p>Get the number of rows in each instance in the database.</p>
         <form method="GET" action="theproject.php"> <!--refresh page when submitted-->
             <input type="hidden" id="countTupleRequest" name="countTupleRequest">
+
             <input type="submit" value="Count" name="countTuples"></p>
+        </form>
+
+        <hr />
+
+        <h2>View all Tuples in Selected Table</h2>
+        <form method="GET" action="theproject.php"> <!--refresh page when submitted-->
+            <input type="hidden" id="viewTupleRequest" name="viewTupleRequest">
+            <select name="Table" required>
+                <option value="">Select Table</option>
+                <option value="Restaurants_Main">Restaurants Main</option>
+                <option value="Restaurants_Name">Restaurants Name</option>
+                <option value="Menus_Offered">Menus Offered</option>
+                <option value="Suppliers">Suppliers</option>
+                <option value="Ingredients">Ingredients</option>
+                <option value="Supplied">Supplied</option>
+                <option value="Dishes_Had">Dishes Had</option>
+                <option value="Contained">Contained</option>
+                <option value="Customers">Customers</option>
+                <option value="Employees_Main">Employees Main</option>
+                <option value="Employees_FT">Employees FT</option>
+                <option value="Servers">Servers</option>
+                <option value="Cooks">Cooks</option>
+                <option value="Managers_Managed">Managers Managed</option>
+                <option value="Employed">Employed</option>
+                <option value="Can_Cook">Can Cook</option>
+                <option value="Orders_Placed_Served_Taken">Orders Placed Served Taken</option>
+                <option value="Included">Included</option>
+            </select><br><br>
+
+            <input type="submit" value="View" name="viewTuples"></p>
         </form>
 
         <hr style="height:8px;background-color:black">
@@ -946,7 +977,7 @@
             executeBoundSQL("UPDATE Employees_Main SET EName=:bind2, HourlyWage=:bind3, HoursPerWeek=:bind4 
             WHERE EID=:bind1", $allEmployeeTuples);
             OCICommit($db_conn);
-            
+
             echo "Employee ID: " . $EID . " successfully updated.";
             echo "</br>";
             echo "</br>";
@@ -970,16 +1001,36 @@
             }
         }
 
-        function printResult($result) { //prints results from a select statement
-            echo "<br>Retrieved data from table demoTable:<br>";
-            echo "<table>";
-            echo "<tr><th>ID</th><th>Name</th></tr>";
+        function handleViewRequest() {
+            global $db_conn;
+            $Table = $_GET["Table"];
+            $result = executePlainSQL("SELECT * FROM $Table");
+            printResult($result);
+        }
 
-            while ($row = OCI_Fetch_Array($result, OCI_BOTH)) {
-                echo "<tr><td>" . $row["ID"] . "</td><td>" . $row["NAME"] . "</td></tr>"; //or just use "echo $row[0]"
+        function printResult($result) {
+            if (oci_fetch_all($result, $rows, null, null, OCI_FETCHSTATEMENT_BY_ROW)) {
+                $columnNames = array_keys($rows[0]);
+        
+                echo "<table border='2'>";
+                echo "<tr>";
+                foreach ($columnNames as $columnName) {
+                    echo "<th>$columnName</th>";
+                }
+                echo "</tr>";
+        
+                // Print table rows
+                foreach ($rows as $row) {
+                    echo "<tr>";
+                    foreach ($row as $value) {
+                        echo "<td>$value</td>";
+                    }
+                    echo "</tr>";
+                }
+                echo "</table>";
+            } else {
+                echo "No data found.";
             }
-
-            echo "</table>";
         }
 
         // HANDLE ALL POST ROUTES
@@ -1007,8 +1058,9 @@
             if (connectToDB()) {
                 if (array_key_exists('countTuples', $_GET)) {
                     handleCountRequest();
+                } else if (array_key_exists('viewTuples', $_GET)) {
+                    handleViewRequest();
                 }
-
                 disconnectFromDB();
             }
         }
@@ -1020,7 +1072,9 @@
             isset($_POST['updateHelperubmit'])
             ) {
             handlePOSTRequest();
-        } else if (isset($_GET['countTupleRequest'])) {
+        } else if (isset($_GET['countTupleRequest']) ||
+                   isset($_GET['viewTupleRequest'])
+            ) {
             handleGETRequest();
         }
 		?>
