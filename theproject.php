@@ -74,6 +74,18 @@
 
         <hr />
 
+        <h2>Remove an Employee</h2>
+        <p>Removes an employee based on their Employee ID. This will also remove the tuple from the employee type.</p>
+
+        <form method="POST" action="theproject.php"> <!--refresh page when submitted-->
+            <input type="hidden" id="deleteQueryRequest" name="deleteQueryRequest">
+            Employee ID: <input type="number" name="EID"> <br /><br />
+
+            <input type="submit" value="Delete" name="deleteSubmit" class="button"></p>
+        </form>
+
+        <hr />
+
         <h2>Update Name in DemoTable</h2>
         <p>The values are case sensitive and if you enter in the wrong case, the update statement will not do anything.</p>
 
@@ -866,6 +878,29 @@
             echo "Rank: " . $Rank . "";
         }
 
+        function handleDeleteRequest() {
+            global $db_conn;
+
+            $EID = $_POST['EID'];
+
+            // Check if EID doesn't exist in Employees_Main
+            $checkResult = executePlainSQL("SELECT COUNT(*) AS COUNT FROM Employees_Main WHERE EID = " . $EID . "");
+            if (($row = oci_fetch_row($checkResult)) != false) {
+                if ($row[0] <= 0) {
+                    // EID doesn't exist
+                    echo "Error: Employee ID: " . $EID . " does not exist.";
+                    return;
+                }
+            }
+
+            $result = executePlainSQL("SELECT EName FROM Employees_Main WHERE EID = " . $EID . "");
+            $name = oci_fetch_row($result);
+            executePlainSQL("DELETE FROM Employees_Main WHERE EID = " . $EID . "");
+            OCICommit($db_conn);
+            echo "Removed employee " . $name[0] . " with Employee ID: " . $EID . ".";
+
+        }
+
         function handleCountRequest() {
             global $db_conn;
 
@@ -887,8 +922,9 @@
                     handleUpdateRequest();
                 } else if (array_key_exists('insertQueryRequest', $_POST)) {
                     handleInsertRequest();
+                } else if (array_key_exists('deleteQueryRequest', $_POST)) {
+                    handleDeleteRequest();
                 }
-
                 disconnectFromDB();
             }
         }
@@ -905,7 +941,10 @@
             }
         }
 
-		if (isset($_POST['reset']) || isset($_POST['updateSubmit']) || isset($_POST['insertSubmit'])) {
+		if (isset($_POST['reset']) || 
+            isset($_POST['updateSubmit']) || 
+            isset($_POST['insertSubmit']) || 
+            isset($_POST['deleteSubmit'])) {
             handlePOSTRequest();
         } else if (isset($_GET['countTupleRequest'])) {
             handleGETRequest();
