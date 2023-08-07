@@ -77,10 +77,11 @@
 
         <h2>Remove an Employee</h2>
         <p>Remove an employee by Employee ID. This will also remove the tuple from the employee type.</p>
+        <p>Leaving the box blank will delete a random employee.</p>
 
         <form method="POST" action="theproject.php"> <!--refresh page when submitted-->
             <input type="hidden" id="deleteQueryRequest" name="deleteQueryRequest">
-            Employee ID: <input type="number" name="EID" required> <br /><br />
+            Employee ID: <input type="number" name="EID"> <br /><br />
 
             <input type="submit" value="Delete" name="deleteSubmit" class="button"></p>
         </form>
@@ -895,22 +896,37 @@
 
             $EID = $_POST['EID'];
 
-            // Check if EID doesn't exist in Employees_Main
-            $checkResult = executePlainSQL("SELECT COUNT(*) AS COUNT FROM Employees_Main WHERE EID = " . $EID . "");
-            if (($row = oci_fetch_row($checkResult)) != false) {
-                if ($row[0] <= 0) {
-                    // EID doesn't exist
-                    echo "Error: Employee ID: " . $EID . " does not exist.";
+
+            $EID = $_POST['EID'];
+
+            // Check if EID is empty
+            if (empty($EID)) {
+                // Get a random Employee ID from the Employees_Main table
+                $randomResult = executePlainSQL("SELECT EID FROM Employees_Main ORDER BY DBMS_RANDOM.RANDOM");
+                $randomEmployee = oci_fetch_row($randomResult);
+                if ($randomEmployee) {
+                    $EID = $randomEmployee[0];
+                } else {
+                    echo "Error: No employees found in the database.";
                     return;
                 }
+            } else {
+                // Check if EID doesn't exist in Employees_Main
+                $checkResult = executePlainSQL("SELECT COUNT(*) AS COUNT FROM Employees_Main WHERE EID = " . $EID);
+                if (($row = oci_fetch_row($checkResult)) != false) {
+                    if ($row[0] <= 0) {
+                        // EID doesn't exist
+                        echo "Error: Employee ID: " . $EID . " does not exist.";
+                        return;
+                    }
+                }
             }
-
-            $result = executePlainSQL("SELECT EName FROM Employees_Main WHERE EID = " . $EID . "");
+        
+            $result = executePlainSQL("SELECT EName FROM Employees_Main WHERE EID = " . $EID);
             $name = oci_fetch_row($result);
-            executePlainSQL("DELETE FROM Employees_Main WHERE EID = " . $EID . "");
+            executePlainSQL("DELETE FROM Employees_Main WHERE EID = " . $EID);
             OCICommit($db_conn);
             echo "Removed employee " . $name[0] . " with Employee ID: " . $EID . ".";
-
         }
 
         function handleUpdateRequest() {
