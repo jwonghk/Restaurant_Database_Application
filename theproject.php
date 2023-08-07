@@ -29,12 +29,12 @@
     <body>
         <h1 style="text-align: center;">Restaurants Manager</h1>
 
-        <hr />
+        <hr style="height:8px;background-color:black">
     </body>
 
     <body>
-        <h2>Reset</h2>
-        <p>Reset to restore the default tables for the Restaurants Manager. If this is the first time running this page, you MUST use reset</p>
+        <h2>Reset Database</h2>
+        <p>Reset to restore the default tables for the Restaurants Manager. If this is the first time running this page, you MUST use reset.</p>
 
         <form method="POST" action="theproject.php">
             <!-- if you want another page to load after the button is clicked, you have to specify that page in the action parameter -->
@@ -45,6 +45,7 @@
         <hr />
 
         <h2>Add a New Cook</h2>
+        <p>Enter the details for the cook to be added.</p>
         <form method="POST" action="theproject.php"> <!--refresh page when submitted-->
             <input type="hidden" id="insertQueryRequest" name="insertQueryRequest">
             Employee ID: <input type="number" name="EID" required> <br /><br />
@@ -75,36 +76,37 @@
         <hr />
 
         <h2>Remove an Employee</h2>
-        <p>Removes an employee based on their Employee ID. This will also remove the tuple from the employee type.</p>
+        <p>Remove an employee by Employee ID. This will also remove the tuple from the employee type.</p>
 
         <form method="POST" action="theproject.php"> <!--refresh page when submitted-->
             <input type="hidden" id="deleteQueryRequest" name="deleteQueryRequest">
-            Employee ID: <input type="number" name="EID"> <br /><br />
+            Employee ID: <input type="number" name="EID" required> <br /><br />
 
             <input type="submit" value="Delete" name="deleteSubmit" class="button"></p>
         </form>
 
         <hr />
 
-        <h2>Update Name in DemoTable</h2>
-        <p>The values are case sensitive and if you enter in the wrong case, the update statement will not do anything.</p>
+        <h2>Update an Employee's Details</h2>
+        <p>Enter the ID of the employee to update.</p>
 
         <form method="POST" action="theproject.php"> <!--refresh page when submitted-->
             <input type="hidden" id="updateQueryRequest" name="updateQueryRequest">
-            Old Name: <input type="text" name="oldName"> <br /><br />
-            New Name: <input type="text" name="newName"> <br /><br />
+            Employee ID: <input type = "number" name = "EID" required> <br /> <br />
 
             <input type="submit" value="Update" name="updateSubmit"></p>
         </form>
 
         <hr />
 
-        <h2>Count the Tuples in DemoTable</h2>
+        <h2>Count the Tuples in Restaurants Manager's Tables</h2>
+        <p>Get the number of rows in each instance in the database.</p>
         <form method="GET" action="theproject.php"> <!--refresh page when submitted-->
             <input type="hidden" id="countTupleRequest" name="countTupleRequest">
-            <input type="submit" name="countTuples"></p>
+            <input type="submit" value="Count" name="countTuples"></p>
         </form>
 
+        <hr style="height:8px;background-color:black">
         <?php
 		//this tells the system that it's no longer just parsing html; it's now parsing PHP
 
@@ -180,18 +182,6 @@
             }
         }
 
-        function printResult($result) { //prints results from a select statement
-            echo "<br>Retrieved data from table demoTable:<br>";
-            echo "<table>";
-            echo "<tr><th>ID</th><th>Name</th></tr>";
-
-            while ($row = OCI_Fetch_Array($result, OCI_BOTH)) {
-                echo "<tr><td>" . $row["ID"] . "</td><td>" . $row["NAME"] . "</td></tr>"; //or just use "echo $row[0]"
-            }
-
-            echo "</table>";
-        }
-
         function connectToDB() {
             global $db_conn;
 
@@ -215,17 +205,6 @@
 
             debugAlertMessage("Disconnect from Database");
             OCILogoff($db_conn);
-        }
-
-        function handleUpdateRequest() {
-            global $db_conn;
-
-            $old_name = $_POST['oldName'];
-            $new_name = $_POST['newName'];
-
-            // you need the wrap the old name and new name values with single quotations
-            executePlainSQL("UPDATE demoTable SET name='" . $new_name . "' WHERE name='" . $old_name . "'");
-            OCICommit($db_conn);
         }
 
         function handleResetRequest() {
@@ -864,7 +843,7 @@
 
             executeBoundSQL("INSERT INTO Cooks VALUES (:bind1, :bind2)", $allCookTuples);
             OCICommit($db_conn);
-            echo "Employee ID successfully registered to a new cook.";
+            echo "Employee ID successfully added to Cooks.";
             echo "</br>";
             echo "</br>";
             echo "Employee ID: " . $EID . "";
@@ -872,6 +851,8 @@
             echo "Name: " . $EName . "";
             echo "</br>";
             echo "Hourly Wage: " . $HourlyWage . ""; 
+            echo "</br>";
+            echo "Hours Per Week: " . $HoursPerWeek . "";
             echo "</br>";
             echo "FulltimeStatus: " . $FulltimeStatus . "";
             echo "</br>";
@@ -901,6 +882,82 @@
 
         }
 
+        function handleUpdateRequest() {
+            global $db_conn;
+
+            $EID = $_POST['EID'];
+            echo "Updating Employee ID: " . $EID . "";
+            echo "</br>";
+            echo '<form method="POST" action="">';
+
+            $result = executePlainSQL("SELECT * FROM Employees_Main WHERE EID = '" . $EID . "'");
+            echo '<table>';
+            
+            echo '<tr>';
+                echo "<th> Employee ID </th>";
+                echo "<th> Name </th>";
+                echo "<th> Hourly Wage </th>";
+                echo "<th> Hours Per Week </th>";
+            echo '</tr>';
+
+            echo "<tr>";
+                while ($row = OCI_Fetch_Array($result, OCI_BOTH)) {
+                    echo '<td>';
+                        echo '<input type = "number" name = "EID" value = "' . $row[0] . '" readonly>';
+                    echo '</td>';
+                    echo '<td>';
+                        echo '<input type = "text" name = "EName" value = "' . trim($row[1]) . '" required>';
+                    echo '</td>';
+                    echo '<td>';
+                        echo '<input type = "number" name = "HourlyWage" step = "0.01" value = "' . $row[2] . '" required>';
+                    echo '</td>';
+                    echo '<td>';
+                        echo '<input type = "number" name = "HoursPerWeek" step = "0.01" value = "' . $row[3] . '" required>';
+                    echo '</td>';
+                }
+            echo "</tr>";
+
+            echo "</table>";
+
+            echo '<input type="hidden" id="updateQueryHelper" name="updateQueryHelper">';
+            echo '<input type="submit" value="Update Employee" name="updateHelperubmit"></p>';
+            echo "</form>";
+        }
+
+        function handleUpdateHelper() {
+            global $db_conn;
+
+            $EID = $_POST["EID"];
+            $EName = $_POST["EName"];
+            $HourlyWage = $_POST["HourlyWage"];
+            $HoursPerWeek = $_POST["HoursPerWeek"];
+
+            $employeeTuple = array(
+                ":bind1" => $EID,
+                ":bind2" => $EName,
+                ":bind3" => $HourlyWage,
+                ":bind4" => $HoursPerWeek
+            );
+
+            $allEmployeeTuples = array(
+                $employeeTuple
+            );
+
+            executeBoundSQL("UPDATE Employees_Main SET EName=:bind2, HourlyWage=:bind3, HoursPerWeek=:bind4 
+            WHERE EID=:bind1", $allEmployeeTuples);
+            OCICommit($db_conn);
+            
+            echo "Employee ID: " . $EID . " successfully updated.";
+            echo "</br>";
+            echo "</br>";
+            echo "Name: " . $EName . "";
+            echo "</br>";
+            echo "Hourly Wage: " . $HourlyWage . ""; 
+            echo "</br>";
+            echo "Hours Per Week: " . $HoursPerWeek . "";
+            echo "</br>";
+        }
+
         function handleCountRequest() {
             global $db_conn;
 
@@ -908,8 +965,21 @@
 
             while (($name = oci_fetch_row($table_names)) != false) {
                 $count = oci_fetch_row(executePlainSQL("SELECT Count(*) FROM $name[0]"));
-                echo "<br> The number of tuples in " . $name[0] . ": " . $count[0] . "<br>";
+                echo "Number of tuples in " . $name[0] . ": " . $count[0] . "";
+                echo "</br>";
             }
+        }
+
+        function printResult($result) { //prints results from a select statement
+            echo "<br>Retrieved data from table demoTable:<br>";
+            echo "<table>";
+            echo "<tr><th>ID</th><th>Name</th></tr>";
+
+            while ($row = OCI_Fetch_Array($result, OCI_BOTH)) {
+                echo "<tr><td>" . $row["ID"] . "</td><td>" . $row["NAME"] . "</td></tr>"; //or just use "echo $row[0]"
+            }
+
+            echo "</table>";
         }
 
         // HANDLE ALL POST ROUTES
@@ -918,12 +988,14 @@
             if (connectToDB()) {
                 if (array_key_exists('resetTablesRequest', $_POST)) {
                     handleResetRequest();
-                } else if (array_key_exists('updateQueryRequest', $_POST)) {
-                    handleUpdateRequest();
                 } else if (array_key_exists('insertQueryRequest', $_POST)) {
                     handleInsertRequest();
                 } else if (array_key_exists('deleteQueryRequest', $_POST)) {
                     handleDeleteRequest();
+                } else if (array_key_exists('updateQueryRequest', $_POST)) {
+                    handleUpdateRequest();
+                } else if (array_key_exists('updateQueryHelper', $_POST)) {
+                    handleUpdateHelper();
                 }
                 disconnectFromDB();
             }
@@ -942,9 +1014,11 @@
         }
 
 		if (isset($_POST['reset']) || 
-            isset($_POST['updateSubmit']) || 
             isset($_POST['insertSubmit']) || 
-            isset($_POST['deleteSubmit'])) {
+            isset($_POST['deleteSubmit']) ||
+            isset($_POST['updateSubmit']) ||
+            isset($_POST['updateHelperubmit'])
+            ) {
             handlePOSTRequest();
         } else if (isset($_GET['countTupleRequest'])) {
             handleGETRequest();
