@@ -102,9 +102,10 @@
 
         <h2>Select From a Chosen Table</h2>
         <p>Choose a table, and enter attributes to select from and any conditions.</p>
+        <p>Leaving ''Select:'' blank will display all attributes for the chosen table.</p>
         <form method="GET" action="theproject.php"> <!--refresh page when submitted-->
             <input type="hidden" id="selectionRequest" name="selectionRequest">
-            Select: <input type="text" name="selectParam" size="23" placeholder="Type appropriate attributes" required> <br /><br />
+            Select: <input type="text" name="selectParam" size="23" placeholder="Type appropriate attributes"> <br /><br />
             From: <select name="fromParam" required>
                 <option value="">Select Table</option>
                 <option value="Restaurants_Main">Restaurants Main</option>
@@ -1107,10 +1108,18 @@
             $fromParam = $_GET['fromParam'];
             $whereParam = $_GET['whereParam'];
 
-            if (!empty($whereParam)) {
-                $result = executePlainSQL("SELECT " . $selectParam . " FROM " . $fromParam . " WHERE " . $whereParam);
+            if (!empty($selectParam)) {
+                if (!empty($whereParam)) {
+                    $result = executePlainSQL("SELECT " . $selectParam . " FROM " . $fromParam . " WHERE " . $whereParam);
+                } else {
+                    $result = executePlainSQL("SELECT " . $selectParam . " FROM " . $fromParam . "");
+                }
             } else {
-                $result = executePlainSQL("SELECT " . $selectParam . " FROM " . $fromParam . "");
+                if (!empty($whereParam)) {
+                    $result = executePlainSQL("SELECT * FROM " . $fromParam . " WHERE " . $whereParam);
+                } else {
+                    $result = executePlainSQL("SELECT * FROM " . $fromParam . "");
+                }
             }
             
             printResult($result);
