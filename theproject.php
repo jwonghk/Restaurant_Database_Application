@@ -100,6 +100,26 @@
 
         <hr />
 
+        <h2>Find Restaurants That Have A Low Average Wage</h2>
+        <p>Get a list of restaurants that have a lower employee average wage than the average wage of all employees in the database.</p>
+        <form method="GET" action="theproject.php"> <!--refresh page when submitted-->
+            <input type="hidden" id="nestedAggRequest" name="nestedAggRequest">
+
+            <input type="submit" value="Submit" name="nestedAggTable"></p>
+        </form>
+
+        <hr />
+
+        <h2>Count the Tuples in Restaurants Manager's Tables</h2>
+        <p>Get the number of rows in each instance in the database.</p>
+        <form method="GET" action="theproject.php"> <!--refresh page when submitted-->
+            <input type="hidden" id="countTupleRequest" name="countTupleRequest">
+
+            <input type="submit" value="Count" name="countTuples"></p>
+        </form>
+
+        <hr />
+
         <h2>Find Suppliers That Supply Every Ingredient</h2>
         <p>Get a list of suppliers that supply all known ingredients in the database.</p>
         <form method="GET" action="theproject.php"> <!--refresh page when submitted-->
@@ -392,7 +412,6 @@
                 FOREIGN KEY (EID) REFERENCES Employees_Main(EID) 
                     ON DELETE CASCADE, 
                 FOREIGN KEY (RID) REFERENCES Restaurants_Main(RID) 
-                    ON DELETE CASCADE
                 )"
             );
 
@@ -1036,6 +1055,35 @@
             echo "</br>";
         }
 
+        function handleNestedAggRequest() {
+            global $db_conn;
+
+            $result = executePlainSQL(" SELECT R.RID, R.RName, R.Branch, R.RLocation, (
+                                                SELECT AVG(E2.HourlyWage) 
+                                                FROM Employees_Main E2
+                                                WHERE E2.EID IN (
+                                                    SELECT EID
+                                                    FROM Employed E3
+                                                    WHERE E3.RID = R.RID)) 
+                                                AS AvgHourlyWageRestaurant
+                                        FROM Restaurants_Main R
+                                        GROUP BY R.RID, R.RName, R.Branch, R.RLocation
+                                        HAVING (
+                                                SELECT AVG(E2.HourlyWage)
+                                                FROM Employees_Main E2
+                                                WHERE E2.EID IN (
+                                                    SELECT EID
+                                                    FROM Employed E3
+                                                    WHERE E3.RID = R.RID
+                                                )
+                                            ) < (
+                                                SELECT AVG(HourlyWage)
+                                                FROM Employees_Main
+                                                )
+            ");
+            printResult($result);
+        }
+
         function handleDivisionRequest() {
             global $db_conn;
 
@@ -1050,8 +1098,8 @@
                                                 WHERE SP.SID = S.SID
                                                 AND SP.IName = I.IName
                                             )
-                                        )
-                                      ");
+                                        )"
+            );
             printResult($result);
         }
 
@@ -1123,7 +1171,9 @@
 	// A better coding practice is to have one method that reroutes your requests accordingly. It will make it easier to add/remove functionality.
         function handleGETRequest() {
             if (connectToDB()) {
-                if (array_key_exists('divisionTable', $_GET)) {
+                if (array_key_exists('nestedAggTable', $_GET)) {
+                    handleNestedAggRequest();
+                } else if (array_key_exists('divisionTable', $_GET)) {
                     handleDivisionRequest();
                 } else if (array_key_exists('countTuples', $_GET)) {
                     handleCountRequest();
@@ -1141,7 +1191,8 @@
             isset($_POST['updateHelperSubmit'])
             ) {
             handlePOSTRequest();
-        } else if (isset($_GET['divisionRequest']) ||
+        } else if (isset($_GET['nestedAggRequest']) ||
+                   isset($_GET['divisionRequest']) ||
                    isset($_GET['countTupleRequest']) ||
                    isset($_GET['viewTupleRequest'])
             ) {
