@@ -1215,7 +1215,7 @@
         } else if (isset($_GET['nestedAggRequest']) ||
                    isset($_GET['divisionRequest']) ||
                    isset($_GET['countTupleRequest']) ||
-                   isset($_GET,['countEmployeesRequest']) ||
+                   isset($_GET['countEmployeesRequest']) ||
                    isset($_GET['viewTupleRequest'])
             ) {
             handleGETRequest();
