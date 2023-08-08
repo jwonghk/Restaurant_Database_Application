@@ -140,6 +140,18 @@
 
         <hr />
 
+        <h2>Find Frequent Customers </h2>
+        <p>Find emails of customers that have placed at least some number of orders.</p>
+        <form method="GET" action="theproject.php"> <!--refresh page when submitted-->
+        <input type="hidden" id="findFrequentCustomersRequest" name="findFrequentCustomersRequest">
+            <label for="OrderCount">Order Count:</label>
+            <input type="number" name="minOrders" step="1" required><br><br>
+
+            <input type="submit" value="Find" name="findFrequentCustomers"></p>
+        </form>
+
+        <hr />
+
         <h2>View all Tuples in Selected Table</h2>
         <p>Choose from a table in the database to view its rows.</p>
         <form method="GET" action="theproject.php"> <!--refresh page when submitted-->
@@ -1120,6 +1132,18 @@
                                             FROM Restaurants_Main r, Employed e
                                             WHERE r.RID = e.RID
                                             GROUP BY RName, Branch, RLocation");
+            echo "Employee count at each restaurant:";
+            printResult($result);
+        }
+
+        function handleFindFrequentCustomersRequest() {
+            global $db_conn;
+            $minOrders = $_GET["minOrders"];
+            $result = executePlainSQL("SELECT CEMail, Count(*) AS OrderCount
+                                        FROM Orders_Placed_Served_Taken
+                                        GROUP BY CEmail
+                                        HAVING COUNT(*) >= " . $minOrders);
+            echo "Emails of customers that have placed at least " . $minOrders . " orders:";
             printResult($result);
         }
 
@@ -1188,6 +1212,8 @@
                     handleCountRequest();
                 } else if (array_key_exists('countEmployees', $_GET)){
                     handleCountEmployeesRequest();
+                } else if (array_key_exists('findFrequentCustomers', $_GET)){
+                    handleFindFrequentCustomersRequest();
                 } else if (array_key_exists('viewTuples', $_GET)) {
                     handleViewRequest();
                 }
@@ -1206,6 +1232,7 @@
                    isset($_GET['divisionRequest']) ||
                    isset($_GET['countTupleRequest']) ||
                    isset($_GET['countEmployeesRequest']) ||
+                   isset($_GET['findFrequentCustomersRequest']) ||
                    isset($_GET['viewTupleRequest'])
             ) {
             handleGETRequest();
