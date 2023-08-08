@@ -130,8 +130,8 @@
 
         <hr />
 
-        <h2>Count Employees </h2>
-        <p>Count the number of employees employed at each restuaurant.</p>
+        <h2>Count Employees at Each Restaurant </h2>
+        <p>Count the number of employees employed at each restaurant.</p>
         <form method="GET" action="theproject.php"> <!--refresh page when submitted-->
             <input type="hidden" id="countEmployeesRequest" name="countEmployeesRequest">
 
