@@ -140,6 +140,16 @@
 
         <hr />
 
+        <h2>Count Employees </h2>
+        <p>Count the number of employees employed at each restuaurant.</p>
+        <form method="GET" action="theproject.php"> <!--refresh page when submitted-->
+            <input type="hidden" id="countEmployeesRequest" name="countEmployeesRequest">
+
+            <input type="submit" value="Count" name="countEmployees"></p>
+        </form>
+
+        <hr />
+
         <h2>View all Tuples in Selected Table</h2>
         <p>Choose from a table in the database to view its rows.</p>
         <form method="GET" action="theproject.php"> <!--refresh page when submitted-->
@@ -1114,6 +1124,15 @@
             }
         }
 
+        function handleCountEmployeesRequest() {
+            global $db_conn;
+            $result = executePlainSQL("SELECT RName, Branch, RLocation, Count(*) AS EmployeeCount
+                                            FROM Restaurants_Main r, Employed e
+                                            WHERE r.RID = e.RID
+                                            GROUP BY RName, Branch, RLocation");
+            printResult($result);
+        }
+
         function handleViewRequest() {
             global $db_conn;
             $Table = $_GET["Table"];
@@ -1177,6 +1196,8 @@
                     handleDivisionRequest();
                 } else if (array_key_exists('countTuples', $_GET)) {
                     handleCountRequest();
+                } else if (array_key_exists('countEmployees', $_GET)){
+                    handleCountEmployeesRequest();
                 } else if (array_key_exists('viewTuples', $_GET)) {
                     handleViewRequest();
                 }
@@ -1194,6 +1215,7 @@
         } else if (isset($_GET['nestedAggRequest']) ||
                    isset($_GET['divisionRequest']) ||
                    isset($_GET['countTupleRequest']) ||
+                   isset($_GET['countEmployeesRequest']) ||
                    isset($_GET['viewTupleRequest'])
             ) {
             handleGETRequest();
