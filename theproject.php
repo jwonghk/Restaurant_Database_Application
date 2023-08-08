@@ -110,16 +110,6 @@
 
         <hr />
 
-        <h2>Count the Tuples in Restaurants Manager's Tables</h2>
-        <p>Get the number of rows in each instance in the database.</p>
-        <form method="GET" action="theproject.php"> <!--refresh page when submitted-->
-            <input type="hidden" id="countTupleRequest" name="countTupleRequest">
-
-            <input type="submit" value="Count" name="countTuples"></p>
-        </form>
-
-        <hr />
-
         <h2>Find Suppliers That Supply Every Ingredient</h2>
         <p>Get a list of suppliers that supply all known ingredients in the database.</p>
         <form method="GET" action="theproject.php"> <!--refresh page when submitted-->
