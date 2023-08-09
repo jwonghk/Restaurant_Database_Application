@@ -100,6 +100,40 @@
 
         <hr />
 
+        <h2>Select From a Chosen Table</h2>
+        <p>Choose a table, and enter attributes to select from and any conditions.</p>
+        <p>Leaving ''Select:'' blank will display all attributes for the chosen table.</p>
+        <form method="GET" action="theproject.php"> <!--refresh page when submitted-->
+            <input type="hidden" id="selectionRequest" name="selectionRequest">
+            Select: <input type="text" name="selectParam" size="23" placeholder="Type appropriate attributes"> <br /><br />
+            From: <select name="fromParam" required>
+                <option value="">Select Table</option>
+                <option value="Restaurants_Main">Restaurants Main</option>
+                <option value="Restaurants_Name">Restaurants Name</option>
+                <option value="Menus_Offered">Menus Offered</option>
+                <option value="Suppliers">Suppliers</option>
+                <option value="Ingredients">Ingredients</option>
+                <option value="Supplied">Supplied</option>
+                <option value="Dishes_Had">Dishes Had</option>
+                <option value="Contained">Contained</option>
+                <option value="Customers">Customers</option>
+                <option value="Employees_Main">Employees Main</option>
+                <option value="Employees_FT">Employees FT</option>
+                <option value="Servers">Servers</option>
+                <option value="Cooks">Cooks</option>
+                <option value="Managers_Managed">Managers Managed</option>
+                <option value="Employed">Employed</option>
+                <option value="Can_Cook">Can Cook</option>
+                <option value="Orders_Placed_Served_Taken">Orders Placed Served Taken</option>
+                <option value="Included">Included</option>
+            </select><br><br>
+            Where: <input type="text" name="whereParam" size="23" placeholder="Leave blank for no condition"> <br /><br />
+
+            <input type="submit" value="Select" name="selectSubmit" class="button"></p>
+        </form>
+
+        <hr />
+
         <h2>Find Restaurants That Have A Low Average Wage</h2>
         <p>Get a list of restaurants that have a lower employee average wage than the average wage of all employees in the database.</p>
         <form method="GET" action="theproject.php"> <!--refresh page when submitted-->
@@ -1136,6 +1170,30 @@
             echo "</br>";
         }
 
+        function handleSelectionRequest() {
+            global $db_conn;
+
+            $selectParam = $_GET['selectParam'];
+            $fromParam = $_GET['fromParam'];
+            $whereParam = $_GET['whereParam'];
+
+            if (!empty($selectParam)) {
+                if (!empty($whereParam)) {
+                    $result = executePlainSQL("SELECT " . $selectParam . " FROM " . $fromParam . " WHERE " . $whereParam);
+                } else {
+                    $result = executePlainSQL("SELECT " . $selectParam . " FROM " . $fromParam . "");
+                }
+            } else {
+                if (!empty($whereParam)) {
+                    $result = executePlainSQL("SELECT * FROM " . $fromParam . " WHERE " . $whereParam);
+                } else {
+                    $result = executePlainSQL("SELECT * FROM " . $fromParam . "");
+                }
+            }
+            
+            printResult($result);
+        }
+
         function handleNestedAggRequest() {
             global $db_conn;
 
@@ -1364,7 +1422,9 @@
 	// A better coding practice is to have one method that reroutes your requests accordingly. It will make it easier to add/remove functionality.
         function handleGETRequest() {
             if (connectToDB()) {
-                if (array_key_exists('nestedAggTable', $_GET)) {
+                if (array_key_exists('selectSubmit', $_GET)) {
+                    handleSelectionRequest();
+                } else if (array_key_exists('nestedAggTable', $_GET)) {
                     handleNestedAggRequest();
                 } else if (array_key_exists('divisionTable', $_GET)) {
                     handleDivisionRequest();
@@ -1390,7 +1450,8 @@
             isset($_POST['joinSubmit'])
             ) {
             handlePOSTRequest();
-        } else if (isset($_GET['nestedAggRequest']) ||
+        } else if (isset($_GET['selectionRequest']) ||
+                   isset($_GET['nestedAggRequest']) ||
                    isset($_GET['divisionRequest']) ||
                    isset($_GET['countTupleRequest']) ||
                    isset($_GET['countEmployeesRequest']) ||
