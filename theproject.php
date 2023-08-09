@@ -152,6 +152,74 @@
 
         <hr />
 
+
+        <!-- projection -->
+        <h2> Projection on OrderedPlacedServedTaken</h2>
+        <p> Select Yes in the options if you want to view the attributes in the table otherwise 
+            please select No.</p>
+        <form method="POST" action="theproject.php"> <!--refresh page when submitted-->
+
+        <label for="OID">OID:</label>
+        <select name="OID" required>
+                <option value="">Select Option</option>
+                <option value="1">Yes</option>
+                <option value="0">No</option>
+            </select><br><br>
+        <label for="TotalPrice">TotalPrice:</label>
+        <select name="TotalPrice" required>
+                <option value="">Select Option</option>
+                <option value="1">Yes</option>
+                <option value="0">No</option>
+            </select><br><br>
+        <label for="SatisfactionRating">SatisfactionRating:</label>
+        <select name="SatisfactionRating" required>
+                <option value="">Select Option</option>
+                <option value="1">Yes</option>
+                <option value="0">No</option>
+            </select><br><br>
+        <label for="CEmail">CEmail:</label>
+        <select name="CEmail" required>
+                <option value="">Select Option</option>
+                <option value="1">Yes</option>
+                <option value="0">No</option>
+            </select><br><br>
+        <label for="RID">RID:</label>
+        <select name="RID" required>
+                <option value="">Select Option</option>
+                <option value="1">Yes</option>
+                <option value="0">No</option>
+            </select><br><br>
+        <label for="EID">EID:</label>
+        <select name="EID" required>
+                <option value="">Select Option</option>
+                <option value="1">Yes</option>
+                <option value="0">No</option>
+            </select><br><br>
+        <input type="submit" value="Projection" name="projectionSubmit"></p>
+
+        </form>
+
+        <hr />
+
+        
+        <!-- Join -->
+        <h2> Join: EmployeesMain and SatisfactoryRating</h2>
+        <p> Select tuples with specific EID: 1 to 20 </p>
+        <form method="POST" action="theproject.php"> <!--refresh page when submitted-->
+
+        <input type="hidden" id="joinRequest" name="joinRequest">
+            
+        
+            Where EID: <input type="number" name="EIDBox"> <br /><br />
+        
+        <input type="submit" value="Join" name="joinSubmit"></p>
+        </form>
+        <hr />
+
+        
+
+
+
         <h2>View all Tuples in Selected Table</h2>
         <p>Choose from a table in the database to view its rows.</p>
         <form method="GET" action="theproject.php"> <!--refresh page when submitted-->
@@ -180,6 +248,7 @@
 
             <input type="submit" value="View" name="viewTuples"></p>
         </form>
+
 
         <hr style="height:8px;background-color:black">
         <?php
@@ -262,7 +331,7 @@
 
             // Your username is ora_(CWL_ID) and the password is a(student number). For example,
 			// ora_platypus is the username and a12345678 is the password.
-            $db_conn = OCILogon("ora_kynguyen", "a76276393", "dbhost.students.cs.ubc.ca:1522/stu");
+            $db_conn = OCILogon("ora_hswong00", "a18947440", "dbhost.students.cs.ubc.ca:1522/stu");
 
             if ($db_conn) {
                 debugAlertMessage("Database is Connected");
@@ -1154,6 +1223,93 @@
             printResult($result);
         }
 
+        function handleProjection() {
+            global $db_conn;
+            $OID = $_POST["OID"];
+            $RID = $_POST["RID"];
+            $EID = $_POST["EID"];
+            $CEmail = $_POST["CEmail"];
+            $SatisfactionRating = $_POST["SatisfactionRating"];
+            $TotalPrice = $_POST["TotalPrice"];
+            /*$result = executePlainSQL("SELECT " . $FirstAt . ", " . $SecondAt . ", " . $ThirdAt 
+            . " FROM Orders_Placed_Served_Taken");*/
+            $sql = "SELECT ";
+            if ($OID == 1) {
+                $sql .= " OID,";
+                #echo "$sql is set!";
+            } 
+            if ($RID == 1) {
+                $sql .= " RID,";
+                #echo "$sql is set!";
+            } 
+            if ($EID == 1) {
+                $sql .= " EID,";
+                #echo "$sql is set!";
+            }
+            if ($CEmail == 1) {
+                $sql .= " CEMAIL,";
+            }
+            if ($SatisfactionRating == 1) {
+                $sql .= " SATISFACTIONRATING,";
+            }
+            if ($TotalPrice == 1) {
+                $sql .= " TOTALPRICE,";
+            }
+
+            echo $sql;
+            /* $sql = trim($sql, ',');
+            
+            Ssql .= "OID, ";
+            if rid
+            Ssql .= "RID, ";
+            $sql .= "FROM Orders_Placed_Served_Taken";
+            $result = executePlainSQL("SELECT OID, TOTALPRICE" . " FROM Orders_Placed_Served_Taken");
+            */
+            $sql = rtrim($sql, ",");
+            
+            #echo "\n";
+            #echo "\n";
+            #echo "\n";
+            $sql .=  " FROM Orders_Placed_Served_Taken";
+
+            #echo "Final: $sql";
+            $result = executePlainSQL($sql);
+            printResult($result);
+            
+        }
+    
+
+        function handleJoin() {
+            global $db_conn;
+
+            
+            $eid = $_POST["EIDBox"];                 
+            
+            
+            $result = executePlainSQL("SELECT * FROM EMPLOYEESMAIN EM
+                INNER JOIN
+                ORDERS_PLACED_SERVED_TAKEN OPST 
+                ON EM.EID = OPST.EID 
+                where " . "EM.EID = " . $eid);
+            
+            printResult($result);
+            
+            /*
+            $result = executePlainSQL("SELECT * FROM EMPLOYEESMAIN EM
+                    where " . "EM.EID = " . $eid);
+            */
+            /*
+            $result = executePlainSQL("SELECT * FROM ORDERS_PLACED_SERVED_TAKEN OPST
+            where " . "OPST.EID = " . $eid);
+            printResult($result);
+            */
+        }
+
+
+
+
+
+
         function printResult($result) {
             if (oci_fetch_all($result, $rows, null, null, OCI_FETCHSTATEMENT_BY_ROW)) {
                 $columnNames = array_keys($rows[0]);
@@ -1195,6 +1351,10 @@
                     handleUpdateRequest();
                 } else if (array_key_exists('updateQueryHelper', $_POST)) {
                     handleUpdateHelper();
+                } else if (array_key_exists('projectionSubmit', $_POST)) {
+                    handleProjection();
+                } else if (array_key_exists('joinRequest', $_POST)) {
+                    handleJoin();
                 }
                 disconnectFromDB();
             }
@@ -1225,7 +1385,9 @@
             isset($_POST['insertSubmit']) || 
             isset($_POST['deleteSubmit']) ||
             isset($_POST['updateSubmit']) ||
-            isset($_POST['updateHelperSubmit'])
+            isset($_POST['updateHelperSubmit']) ||
+            isset($_POST['projectionSubmit']) ||
+            isset($_POST['joinSubmit'])
             ) {
             handlePOSTRequest();
         } else if (isset($_GET['nestedAggRequest']) ||
