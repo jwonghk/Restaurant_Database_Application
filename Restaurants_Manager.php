@@ -33,6 +33,7 @@
     </body>
 
     <body>
+        <!-- RESET QUERY -->
         <h2>Reset Database</h2>
         <p>Reset to restore the default tables for the Restaurants Manager. If this is the first time running this page, you MUST use reset.</p>
 
@@ -44,8 +45,10 @@
 
         <hr />
 
+        <!-- INSERTION QUERY -->
         <h2>Add a New Cook</h2>
         <p>Enter the details for the cook to be added.</p>
+
         <form method="POST" action="Restaurants_Manager.php"> <!--refresh page when submitted-->
             <input type="hidden" id="insertQueryRequest" name="insertQueryRequest">
             Employee ID: <input type="number" name="EID" required> <br /><br />
@@ -75,6 +78,7 @@
 
         <hr />
 
+        <!-- DELETION QUERY -->
         <h2>Remove an Employee</h2>
         <p>Remove an employee by Employee ID. This will also remove the tuple from the employee type.</p>
         <p>Leaving the box blank will delete a random employee.</p>
@@ -88,6 +92,7 @@
 
         <hr />
 
+        <!-- UPDATE QUERY -->
         <h2>Update an Employee's Details</h2>
         <p>Enter the ID of the employee to update.</p>
 
@@ -100,9 +105,11 @@
 
         <hr />
 
+        <!-- SELECTION QUERY -->
         <h2>Select From a Chosen Table</h2>
         <p>Choose a table, and enter attributes to select from and any conditions.</p>
         <p>Leaving ''Select:'' blank will display all attributes for the chosen table.</p>
+
         <form method="GET" action="Restaurants_Manager.php"> <!--refresh page when submitted-->
             <input type="hidden" id="selectionRequest" name="selectionRequest">
             Select: <input type="text" name="selectParam" size="23" placeholder="Type appropriate attributes"> <br /><br />
@@ -134,36 +141,66 @@
 
         <hr />
 
-        <h2>Find Restaurants That Have A Low Average Wage</h2>
-        <p>Get a list of restaurants that have a lower employee average wage than the average wage of all employees in the database.</p>
-        <form method="GET" action="Restaurants_Manager.php"> <!--refresh page when submitted-->
-            <input type="hidden" id="nestedAggRequest" name="nestedAggRequest">
+        <!-- PROJECTION QUERY -->
+        <h2> Projection On Orders</h2>
+        <p> Select 'Yes' in the options for attributes you want to view in the table, otherwise please select 'No'.</p>
 
-            <input type="submit" value="Submit" name="nestedAggTable"></p>
+        <form method="POST" action="Restaurants_Manager.php"> <!--refresh page when submitted-->
+            <label for="OID">Order ID:</label>
+            <select name="OID" required>
+                    <option value="">Select Option</option>
+                    <option value="1">Yes</option>
+                    <option value="0">No</option>
+                </select><br><br>
+            <label for="TotalPrice">Total Price:</label>
+            <select name="TotalPrice" required>
+                    <option value="">Select Option</option>
+                    <option value="1">Yes</option>
+                    <option value="0">No</option>
+                </select><br><br>
+            <label for="SatisfactionRating">Satisfaction Rating:</label>
+            <select name="SatisfactionRating" required>
+                    <option value="">Select Option</option>
+                    <option value="1">Yes</option>
+                    <option value="0">No</option>
+                </select><br><br>
+            <label for="CEmail">Customer Email:</label>
+            <select name="CEmail" required>
+                    <option value="">Select Option</option>
+                    <option value="1">Yes</option>
+                    <option value="0">No</option>
+                </select><br><br>
+            <label for="RID">Restaurant ID:</label>
+            <select name="RID" required>
+                    <option value="">Select Option</option>
+                    <option value="1">Yes</option>
+                    <option value="0">No</option>
+                </select><br><br>
+            <label for="EID">Employee ID:</label>
+            <select name="EID" required>
+                    <option value="">Select Option</option>
+                    <option value="1">Yes</option>
+                    <option value="0">No</option>
+                </select><br><br>
+
+            <input type="submit" value="Projection" name="projectionSubmit"></p>
         </form>
 
         <hr />
 
-        <h2>Find Suppliers That Supply Every Ingredient</h2>
-        <p>Get a list of suppliers that supply all known ingredients in the database.</p>
-        <form method="GET" action="Restaurants_Manager.php"> <!--refresh page when submitted-->
-            <input type="hidden" id="divisionRequest" name="divisionRequest">
-
-            <input type="submit" value="Submit" name="divisionTable"></p>
+        <!-- JOIN QUERY -->
+        <h2> Join: Obtain Servers' Orders Taken</h2>
+        <p> Please select from existing server employee IDs. </p>
+        <form method="POST" action="Restaurants_Manager.php"> <!--refresh page when submitted-->
+            <input type="hidden" id="joinRequest" name="joinRequest">
+                Employee ID: <input type="number" name="EIDBox" required> <br /><br />
+            
+            <input type="submit" value="Join" name="joinSubmit"></p>
         </form>
 
         <hr />
 
-        <h2>Count the Tuples in Restaurants Manager's Tables</h2>
-        <p>Get the number of rows in each instance in the database.</p>
-        <form method="GET" action="Restaurants_Manager.php"> <!--refresh page when submitted-->
-            <input type="hidden" id="countTupleRequest" name="countTupleRequest">
-
-            <input type="submit" value="Count" name="countTuples"></p>
-        </form>
-
-        <hr />
-
+        <!-- AGGREGATION WITH GROUP BY QUERY -->
         <h2>Count Employees at Each Restaurant </h2>
         <p>Count the number of employees employed at each restaurant.</p>
         <form method="GET" action="Restaurants_Manager.php"> <!--refresh page when submitted-->
@@ -174,85 +211,53 @@
 
         <hr />
 
+        <!-- AGGREGATION WITH HAVING QUERY -->
         <h2>Find Frequent Customers </h2>
         <p>Find emails of customers that have placed at least some number of orders.</p>
         <form method="GET" action="Restaurants_Manager.php"> <!--refresh page when submitted-->
-        <input type="hidden" id="findFrequentCustomersRequest" name="findFrequentCustomersRequest">
-            <label for="OrderCount">Order Count:</label>
-            <input type="number" name="minOrders" step="1" required><br><br>
+            <input type="hidden" id="findFrequentCustomersRequest" name="findFrequentCustomersRequest">
+                <label for="OrderCount">Order Count:</label>
+                <input type="number" name="minOrders" step="1" required><br><br>
 
-            <input type="submit" value="Find" name="findFrequentCustomers"></p>
+                <input type="submit" value="Find" name="findFrequentCustomers"></p>
+        </form>
+
+        <hr />
+        
+        <!-- NESTED AGGREGATION WITH GROUP BY QUERY -->
+        <h2>Find Restaurants That Have A Low Average Wage</h2>
+        <p>Get a list of restaurants that have a lower employee average wage than the average wage of all employees in the database.</p>
+        <form method="GET" action="Restaurants_Manager.php"> <!--refresh page when submitted-->
+            <input type="hidden" id="nestedAggRequest" name="nestedAggRequest">
+
+            <input type="submit" value="Submit" name="nestedAggTable"></p>
         </form>
 
         <hr />
 
+        <!-- DIVISION QUERY -->
+        <h2>Find Suppliers That Supply Every Ingredient</h2>
+        <p>Get a list of suppliers that supply all known ingredients in the database.</p>
+        <form method="GET" action="Restaurants_Manager.php"> <!--refresh page when submitted-->
+            <input type="hidden" id="divisionRequest" name="divisionRequest">
 
-        <!-- projection -->
-        <h2> Projection on OrderedPlacedServedTaken</h2>
-        <p> Select 'Yes' in the options for attributes you want to view in the table, otherwise 
-            please select 'No'.</p>
-        <form method="POST" action="Restaurants_Manager.php"> <!--refresh page when submitted-->
-
-        <label for="OID">OID:</label>
-        <select name="OID" required>
-                <option value="">Select Option</option>
-                <option value="1">Yes</option>
-                <option value="0">No</option>
-            </select><br><br>
-        <label for="TotalPrice">TotalPrice:</label>
-        <select name="TotalPrice" required>
-                <option value="">Select Option</option>
-                <option value="1">Yes</option>
-                <option value="0">No</option>
-            </select><br><br>
-        <label for="SatisfactionRating">SatisfactionRating:</label>
-        <select name="SatisfactionRating" required>
-                <option value="">Select Option</option>
-                <option value="1">Yes</option>
-                <option value="0">No</option>
-            </select><br><br>
-        <label for="CEmail">CEmail:</label>
-        <select name="CEmail" required>
-                <option value="">Select Option</option>
-                <option value="1">Yes</option>
-                <option value="0">No</option>
-            </select><br><br>
-        <label for="RID">RID:</label>
-        <select name="RID" required>
-                <option value="">Select Option</option>
-                <option value="1">Yes</option>
-                <option value="0">No</option>
-            </select><br><br>
-        <label for="EID">EID:</label>
-        <select name="EID" required>
-                <option value="">Select Option</option>
-                <option value="1">Yes</option>
-                <option value="0">No</option>
-            </select><br><br>
-        <input type="submit" value="Projection" name="projectionSubmit"></p>
-
+            <input type="submit" value="Submit" name="divisionTable"></p>
         </form>
 
         <hr />
 
-        
-        <!-- Join -->
-        <h2> Join: Obtain Servers' Orders Taken</h2>
-        <p> Please select from existing server employee IDs. </p>
-        <form method="POST" action="Restaurants_Manager.php"> <!--refresh page when submitted-->
+        <!-- COUNT QUERY -->
+        <h2>Count the Tuples in Restaurants Manager's Tables</h2>
+        <p>Get the number of rows in each instance in the database.</p>
+        <form method="GET" action="Restaurants_Manager.php"> <!--refresh page when submitted-->
+            <input type="hidden" id="countTupleRequest" name="countTupleRequest">
 
-        <input type="hidden" id="joinRequest" name="joinRequest">
-            
-            Employee ID: <input type="number" name="EIDBox" required> <br /><br />
-        
-        <input type="submit" value="Join" name="joinSubmit"></p>
+            <input type="submit" value="Count" name="countTuples"></p>
         </form>
+
         <hr />
 
-        
-
-
-
+        <!-- VIEW QUERY -->
         <h2>View all Tuples in Selected Table</h2>
         <p>Choose from a table in the database to view its rows.</p>
         <form method="GET" action="Restaurants_Manager.php"> <!--refresh page when submitted-->
@@ -281,7 +286,6 @@
 
             <input type="submit" value="View" name="viewTuples"></p>
         </form>
-
 
         <hr style="height:8px;background-color:black">
         <?php
@@ -384,6 +388,7 @@
             OCILogoff($db_conn);
         }
 
+        // RESET QUERY
         function handleResetRequest() {
             global $db_conn;
             // Reset tables with sample data
@@ -964,6 +969,7 @@
             OCICommit($db_conn);
         }
 
+        // INSERTION QUERY
         function handleInsertRequest() {
             global $db_conn;
 
@@ -1055,6 +1061,7 @@
             echo "Rank: " . $Rank . "";
         }
 
+        // DELETION QUERY
         function handleDeleteRequest() {
             global $db_conn;
 
@@ -1093,6 +1100,7 @@
             echo "Removed employee " . $name[0] . " with Employee ID: " . $EID . ".";
         }
 
+        // UPDATE QUERY
         function handleUpdateRequest() {
             global $db_conn;
 
@@ -1135,6 +1143,7 @@
             echo "</form>";
         }
 
+        // UPDATE QUERY HELPER
         function handleUpdateHelper() {
             global $db_conn;
 
@@ -1169,6 +1178,7 @@
             echo "</br>";
         }
 
+        // SELECTION QUERY
         function handleSelectionRequest() {
             global $db_conn;
 
@@ -1193,6 +1203,82 @@
             printResult($result);
         }
 
+        // PROJECTION QUERY
+        function handleProjection() {
+            global $db_conn;
+            $OID = $_POST["OID"];
+            $RID = $_POST["RID"];
+            $EID = $_POST["EID"];
+            $CEmail = $_POST["CEmail"];
+            $SatisfactionRating = $_POST["SatisfactionRating"];
+            $TotalPrice = $_POST["TotalPrice"];
+
+            $sql = "SELECT ";
+            if ($OID == 1) {
+                $sql .= " OID,";
+            } 
+            if ($RID == 1) {
+                $sql .= " RID,";
+            } 
+            if ($EID == 1) {
+                $sql .= " EID,";
+            }
+            if ($CEmail == 1) {
+                $sql .= " CEMAIL,";
+            }
+            if ($SatisfactionRating == 1) {
+                $sql .= " SATISFACTIONRATING,";
+            }
+            if ($TotalPrice == 1) {
+                $sql .= " TOTALPRICE,";
+            }
+
+            $sql = rtrim($sql, ",");
+            $sql .=  " FROM Orders_Placed_Served_Taken";
+
+            $result = executePlainSQL($sql);
+            printResult($result);
+        }
+
+        // JOIN QUERY
+        function handleJoin() {
+            global $db_conn;
+
+            $eid = $_POST["EIDBox"];                 
+            
+            $result = executePlainSQL("SELECT * 
+                                        FROM Employees_Main E, Servers S, Orders_Placed_Served_Taken O
+                                        WHERE O.EID = S.EID
+                                        AND S.EID = E.EID
+                                        AND " . "S.EID = " . $eid);
+            
+            printResult($result);
+        }
+
+        // AGGREGATION WITH GROUP BY QUERY
+        function handleCountEmployeesRequest() {
+            global $db_conn;
+            $result = executePlainSQL("SELECT RName, Branch, RLocation, Count(*) AS EmployeeCount
+                                            FROM Restaurants_Main r, Employed e
+                                            WHERE r.RID = e.RID
+                                            GROUP BY RName, Branch, RLocation");
+            echo "Employee count at each restaurant:";
+            printResult($result);
+        }
+
+        // AGGREGATION WITH HAVING QUERY
+        function handleFindFrequentCustomersRequest() {
+            global $db_conn;
+            $minOrders = $_GET["minOrders"];
+            $result = executePlainSQL("SELECT CEMail, Count(*) AS OrderCount
+                                        FROM Orders_Placed_Served_Taken
+                                        GROUP BY CEmail
+                                        HAVING COUNT(*) >= " . $minOrders);
+            echo "Emails of customers that have placed at least " . $minOrders . " orders:";
+            printResult($result);
+        }
+    
+        // NESTED AGGREGATION WITH GROUP BY QUERY
         function handleNestedAggRequest() {
             global $db_conn;
 
@@ -1222,6 +1308,7 @@
             printResult($result);
         }
 
+        // DIVISION QUERY
         function handleDivisionRequest() {
             global $db_conn;
 
@@ -1241,6 +1328,7 @@
             printResult($result);
         }
 
+        // COUNT QUERY
         function handleCountRequest() {
             global $db_conn;
             $table_names = executePlainSQL("SELECT table_name FROM user_tables");
@@ -1252,27 +1340,7 @@
             }
         }
 
-        function handleCountEmployeesRequest() {
-            global $db_conn;
-            $result = executePlainSQL("SELECT RName, Branch, RLocation, Count(*) AS EmployeeCount
-                                            FROM Restaurants_Main r, Employed e
-                                            WHERE r.RID = e.RID
-                                            GROUP BY RName, Branch, RLocation");
-            echo "Employee count at each restaurant:";
-            printResult($result);
-        }
-
-        function handleFindFrequentCustomersRequest() {
-            global $db_conn;
-            $minOrders = $_GET["minOrders"];
-            $result = executePlainSQL("SELECT CEMail, Count(*) AS OrderCount
-                                        FROM Orders_Placed_Served_Taken
-                                        GROUP BY CEmail
-                                        HAVING COUNT(*) >= " . $minOrders);
-            echo "Emails of customers that have placed at least " . $minOrders . " orders:";
-            printResult($result);
-        }
-
+        // VIEW QUERY
         function handleViewRequest() {
             global $db_conn;
             $Table = $_GET["Table"];
@@ -1280,75 +1348,7 @@
             printResult($result);
         }
 
-        function handleProjection() {
-            global $db_conn;
-            $OID = $_POST["OID"];
-            $RID = $_POST["RID"];
-            $EID = $_POST["EID"];
-            $CEmail = $_POST["CEmail"];
-            $SatisfactionRating = $_POST["SatisfactionRating"];
-            $TotalPrice = $_POST["TotalPrice"];
-            /*$result = executePlainSQL("SELECT " . $FirstAt . ", " . $SecondAt . ", " . $ThirdAt 
-            . " FROM Orders_Placed_Served_Taken");*/
-            $sql = "SELECT ";
-            if ($OID == 1) {
-                $sql .= " OID,";
-                #echo "$sql is set!";
-            } 
-            if ($RID == 1) {
-                $sql .= " RID,";
-                #echo "$sql is set!";
-            } 
-            if ($EID == 1) {
-                $sql .= " EID,";
-                #echo "$sql is set!";
-            }
-            if ($CEmail == 1) {
-                $sql .= " CEMAIL,";
-            }
-            if ($SatisfactionRating == 1) {
-                $sql .= " SATISFACTIONRATING,";
-            }
-            if ($TotalPrice == 1) {
-                $sql .= " TOTALPRICE,";
-            }
-
-            echo $sql;
-            /* $sql = trim($sql, ',');
-            
-            Ssql .= "OID, ";
-            if rid
-            Ssql .= "RID, ";
-            $sql .= "FROM Orders_Placed_Served_Taken";
-            $result = executePlainSQL("SELECT OID, TOTALPRICE" . " FROM Orders_Placed_Served_Taken");
-            */
-            $sql = rtrim($sql, ",");
-            
-            #echo "\n";
-            #echo "\n";
-            #echo "\n";
-            $sql .=  " FROM Orders_Placed_Served_Taken";
-
-            // echo "Final: $sql";
-            $result = executePlainSQL($sql);
-            printResult($result);
-            
-        }
-    
-        function handleJoin() {
-            global $db_conn;
-
-            $eid = $_POST["EIDBox"];                 
-            
-            $result = executePlainSQL("SELECT * 
-                                        FROM Employees_Main E, Servers S, Orders_Placed_Served_Taken O
-                                        WHERE O.EID = S.EID
-                                        AND S.EID = E.EID
-                                        AND " . "S.EID = " . $eid);
-            
-            printResult($result);
-        }
-
+        // PRINT HELPER
         function printResult($result) {
             if (oci_fetch_all($result, $rows, null, null, OCI_FETCHSTATEMENT_BY_ROW)) {
                 $columnNames = array_keys($rows[0]);
