@@ -1,0 +1,396 @@
+[33mcommit c96f2da1a545278a36502ffa4b68f65eebbf850c[m[33m ([m[1;36mHEAD -> [m[1;32mmain[m[33m)[m
+Merge: d466d59 16c85ca
+Author: UBC Student <hswong00@thetis.students.cs.ubc.ca>
+Date:   Tue Aug 8 18:33:40 2023 -0700
+
+    Merge branch 'main' of https://github.students.cs.ubc.ca/CPSC304-2023S-T2/project_k1s9g_k4r6m_t8a8t
+
+[33mcommit d466d59b3d5cf7536b5f262ade4bf4092897f424[m
+Author: UBC Student <hswong00@thetis.students.cs.ubc.ca>
+Date:   Tue Aug 8 18:33:32 2023 -0700
+
+    Finished Join and Projection
+
+[33mcommit 16c85caf5b886f743c1e64146e00cd65d34eb3c8[m
+Author: kynguyen <kynguyen@students.cs.ubca.ca>
+Date:   Tue Aug 8 12:54:49 2023 -0700
+
+    Updated Selection Query
+    
+    Leaving select blank will display *
+
+[33mcommit 9c5b5d09aa4909b93a4ef07eda23389f52abd01b[m
+Author: kynguyen <kynguyen@students.cs.ubca.ca>
+Date:   Tue Aug 8 00:05:12 2023 -0700
+
+    Create Repository Link.url
+
+[33mcommit 63d0c5e38bc147e8a523c32afb84723cfe8e37fa[m
+Author: kynguyen <kynguyen@students.cs.ubca.ca>
+Date:   Mon Aug 7 23:06:19 2023 -0700
+
+    Added Selection Query
+
+[33mcommit 19af6c90ba59eb2d9c9608e1942d490ac4ddbaf5[m
+Author: Michael Paknys <mpaknys@icloud.com>
+Date:   Mon Aug 7 21:06:52 2023 -0700
+
+    Aggregation with Having - Get emails of customers with at least some number of orders
+
+[33mcommit ca5e9240677ec670da79ee35e284cdcaee26cf00[m
+Author: UBC Student <kynguyen@students.cs.ubc.ca>
+Date:   Mon Aug 7 19:55:17 2023 -0700
+
+    Update README.md
+
+[33mcommit 2f0b1a4f54b7d69c11a58046022b9407d2ceb637[m
+Author: kynguyen <kynguyen@students.cs.ubca.ca>
+Date:   Mon Aug 7 19:46:54 2023 -0700
+
+    Added more to count title
+
+[33mcommit b60308b5e57be4338fbc18b365135d84a3787eb7[m
+Author: kynguyen <kynguyen@students.cs.ubca.ca>
+Date:   Mon Aug 7 19:43:56 2023 -0700
+
+    Deleted duplicate html
+
+[33mcommit 1b4756877ccffcddb54f2b0fdfbd6382048839c3[m
+Merge: 760ccfa bb73978
+Author: kynguyen <kynguyen@students.cs.ubca.ca>
+Date:   Mon Aug 7 19:36:33 2023 -0700
+
+    Merge branch 'main' of https://github.students.cs.ubc.ca/CPSC304-2023S-T2/project_k1s9g_k4r6m_t8a8t
+
+[33mcommit 760ccfae53450520c1c773e5d249931e5cf91f0c[m
+Author: kynguyen <kynguyen@students.cs.ubca.ca>
+Date:   Mon Aug 7 19:36:22 2023 -0700
+
+    Organized repo
+    
+    Added folders for each milestone, and all files in source directory are the final milestone 4 files that will be used for the demo.
+
+[33mcommit bb73978117d58be881c069b87b257bdf9ae11688[m
+Author: Michael Paknys <mpaknys@icloud.com>
+Date:   Mon Aug 7 19:36:15 2023 -0700
+
+    fixed a typo
+
+[33mcommit ad7e3360c93d47fbff3934d00c8f16128a0ec514[m
+Author: Michael Paknys <mpaknys@icloud.com>
+Date:   Mon Aug 7 19:31:13 2023 -0700
+
+    Added Count Employees functionality for Aggregation with Group By query
+
+[33mcommit 5201ff53e7cce9e8e2934fe63a76cd87518990f1[m
+Author: kynguyen <kynguyen@students.cs.ubca.ca>
+Date:   Mon Aug 7 18:09:05 2023 -0700
+
+    Added NestedAgg Query
+
+[33mcommit 6bc2327b3c9d1fe5f489834d6e6e7107fb6ee72c[m
+Author: kynguyen <kynguyen@students.cs.ubca.ca>
+Date:   Mon Aug 7 14:58:59 2023 -0700
+
+    Revised ER Diagram
+    
+    Revised constraints in ER Diagram to relax any needed assertions requirements
+
+[33mcommit b397357ebe4b104f4d56fef6ff30dfadee7f68a4[m
+Author: kynguyen <kynguyen@students.cs.ubca.ca>
+Date:   Mon Aug 7 13:35:52 2023 -0700
+
+    Added Division and DDL changes
+    
+    Added division query, and adjusted inserts in ddl file to produce at least one result for the query.
+
+[33mcommit 2b0a37200ca5f0939d5f27c9a503922d9bf0f8e3[m
+Author: kynguyen <kynguyen@students.cs.ubca.ca>
+Date:   Mon Aug 7 04:29:02 2023 -0700
+
+    Update theproject.php
+    
+    Updated delete query to delete randomly if box is blank.
+
+[33mcommit 06e223f6c6638cb3b24cc7eed4eb60d08fc4239e[m
+Author: kynguyen <kynguyen@students.cs.ubca.ca>
+Date:   Mon Aug 7 03:47:19 2023 -0700
+
+    Update theproject.php
+    
+    Added View Table query
+
+[33mcommit 7244504885533e917bdb425a03dc46060e8c37e0[m
+Author: kynguyen <kynguyen@students.cs.ubca.ca>
+Date:   Mon Aug 7 02:58:57 2023 -0700
+
+    Update theproject.php
+    
+    Added Update query
+
+[33mcommit 8b3d20df5f33dd799f2f08e744363f5385721acf[m
+Author: kynguyen <kynguyen@students.cs.ubca.ca>
+Date:   Sun Aug 6 23:57:26 2023 -0700
+
+    Update theproject.php
+    
+    Added the delete query
+
+[33mcommit 012571813c3b0413df618c5515e08cb02e52d9f8[m
+Author: kynguyen <kynguyen@students.cs.ubca.ca>
+Date:   Sun Aug 6 23:04:37 2023 -0700
+
+    Update DDL.sql
+    
+    Some capitalization fixes.
+
+[33mcommit 0a596e64c20184f08accdc4d7b3114d9587ca8fb[m
+Author: kynguyen <kynguyen@students.cs.ubca.ca>
+Date:   Sun Aug 6 23:03:41 2023 -0700
+
+    Create theproject.php
+    
+    This PHP file contains the Insert query.
+
+[33mcommit 1eddab52836ddd341bbc68e11dde0cf296eae998[m
+Author: kynguyen <kynguyen@students.cs.ubca.ca>
+Date:   Sun Aug 6 04:50:53 2023 -0700
+
+    Update DDL.sql
+    
+    Changed eggs & toast to 'and', to remove -set define off
+
+[33mcommit dc6ed7ea1c821c7e4c2337de74a25e6a627a915e[m
+Author: Michael Paknys <mpaknys@icloud.com>
+Date:   Sat Aug 5 21:21:19 2023 -0700
+
+    handleResetRequest() and handleCountRequest() updated for reference
+
+[33mcommit 30f170b64ff47892cbebcaed4bdb706c1d30755f[m
+Author: kynguyen <kynguyen@students.cs.ubca.ca>
+Date:   Sat Aug 5 17:21:35 2023 -0700
+
+    Update DDL.sql
+
+[33mcommit d54cbb08195e6b2de4115de20247604217001e63[m
+Author: kynguyen <kynguyen@students.cs.ubca.ca>
+Date:   Sat Aug 5 17:19:51 2023 -0700
+
+    Fixed minor problems
+
+[33mcommit c6aa02fa2e75296094ec88790f51a04d1fa90506[m
+Author: kynguyen <kynguyen@students.cs.ubca.ca>
+Date:   Sat Aug 5 17:12:05 2023 -0700
+
+    Update DDL.sql
+
+[33mcommit 18b09b6c2559d5b0c3f1faa3ee7fd60a3d029b82[m
+Author: kynguyen <kynguyen@students.cs.ubca.ca>
+Date:   Sat Aug 5 17:04:27 2023 -0700
+
+    Added DDL file that works for SQLPlus
+
+[33mcommit 0148b601c01b23d3f2a604eee099eeeeb9f26768[m
+Author: Michael Paknys <mpaknys@icloud.com>
+Date:   Thu Jul 27 17:50:47 2023 -0700
+
+    Updated EmployeesMain and EmployeesFT tables and associated insertions
+
+[33mcommit ff5ebae3e3aec3b2b3b6d3b6dff021000140e320[m
+Author: kynguyen <kynguyen@students.cs.ubca.ca>
+Date:   Thu Jul 27 17:20:29 2023 -0700
+
+    Further Modifications to M2 doc
+
+[33mcommit b1e310bd523d6b9c92657c6bbc7b1963d670696d[m
+Merge: 868eeae d37c9e8
+Author: kynguyen <kynguyen@students.cs.ubca.ca>
+Date:   Thu Jul 27 17:14:43 2023 -0700
+
+    Merge branch 'main' of https://github.students.cs.ubc.ca/CPSC304-2023S-T2/project_k1s9g_k4r6m_t8a8t
+
+[33mcommit 868eeaec6789f89cd52016ba15aabb3220afd4c1[m
+Author: kynguyen <kynguyen@students.cs.ubca.ca>
+Date:   Thu Jul 27 17:14:31 2023 -0700
+
+    Updated ER Diagram further, and changed FDs in Milestone 2 doc
+
+[33mcommit d37c9e838aef6926ce8bc9fb5640dd14ff267153[m
+Author: Michael Paknys <mpaknys@icloud.com>
+Date:   Thu Jul 27 16:50:17 2023 -0700
+
+    removed unecessary 'DATE' from tuples in OrdersPlacedServedTaken
+
+[33mcommit 2f5c91963e08ba323f598b964785c242d022b3ed[m[33m ([m[1;31morigin/Hoi[m[33m)[m
+Author: UBC Student <hswong00@thetis.students.cs.ubc.ca>
+Date:   Thu Jul 27 13:15:00 2023 -0700
+
+    DishesHad DType values added
+
+[33mcommit eccf34d30bb0a092fbaa001f707d0b76cf052982[m
+Author: UBC Student <hswong00@thetis.students.cs.ubc.ca>
+Date:   Thu Jul 27 13:08:48 2023 -0700
+
+    OrdersPlacedServedTaken updated
+
+[33mcommit 40fe938e9e0b83c5778dae9f7611de978c1e94d2[m
+Author: UBC Student <hswong00@thetis.students.cs.ubc.ca>
+Date:   Thu Jul 27 12:55:46 2023 -0700
+
+    Insert INTO Customers donw
+
+[33mcommit bc10ffff6a3c7cea85d792d9f38fa0f443e4c9ed[m
+Author: UBC Student <hswong00@thetis.students.cs.ubc.ca>
+Date:   Thu Jul 27 12:40:30 2023 -0700
+
+    EmployeesSalary
+
+[33mcommit dc6e20349918865165fb768793a9bf129bcaa7d2[m
+Author: UBC Student <hswong00@thetis.students.cs.ubc.ca>
+Date:   Thu Jul 27 12:30:39 2023 -0700
+
+    Included table Added
+
+[33mcommit 2a1aeab0d7f4f73a2a337736c81a8b1581042e33[m
+Merge: f36a1d3 0a73210
+Author: UBC Student <hswong00@thetis.students.cs.ubc.ca>
+Date:   Thu Jul 27 12:22:50 2023 -0700
+
+    Merge branch 'main' of https://github.students.cs.ubc.ca/CPSC304-2023S-T2/project_k1s9g_k4r6m_t8a8t
+
+[33mcommit f36a1d3ed35af72b82b8863bf95a7182f9c5f4bf[m
+Author: UBC Student <hswong00@thetis.students.cs.ubc.ca>
+Date:   Thu Jul 27 12:21:47 2023 -0700
+
+    remove Some attributes from CanCook
+
+[33mcommit 0a73210ab5140df6e080c975dc702442cb62e130[m
+Merge: 58dc5e3 a85b6cf
+Author: kynguyen <kynguyen@students.cs.ubca.ca>
+Date:   Thu Jul 27 11:44:33 2023 -0700
+
+    Merge branch 'main' of https://github.students.cs.ubc.ca/CPSC304-2023S-T2/project_k1s9g_k4r6m_t8a8t
+
+[33mcommit 58dc5e34a2808e218807c667eaf8f3591638bbfc[m
+Author: kynguyen <kynguyen@students.cs.ubca.ca>
+Date:   Thu Jul 27 11:43:03 2023 -0700
+
+    Fixed Syntax on Milestone 2 - DDL
+
+[33mcommit a85b6cff061e7b4a7359b7839176373e226a3dfe[m
+Author: UBC Student <hswong00@thetis.students.cs.ubc.ca>
+Date:   Thu Jul 27 11:41:59 2023 -0700
+
+    orderplacedservedTaken extra
+
+[33mcommit 8f29beb6efba70fc647434465bde9ee9eaf5c1d2[m
+Author: UBC Student <hswong00@thetis.students.cs.ubc.ca>
+Date:   Thu Jul 27 09:35:55 2023 -0700
+
+    additional OrderPlace
+
+[33mcommit 259a07d839a5ff7986347ad042cb2cbf7f29e45c[m
+Author: UBC Student <hswong00@thetis.students.cs.ubc.ca>
+Date:   Thu Jul 27 09:31:05 2023 -0700
+
+    some additional OrderPlacesServedTaken
+
+[33mcommit 0550828d887cdd25e6caf72cd17b78524bb5399a[m
+Author: UBC Student <hswong00@thetis.students.cs.ubc.ca>
+Date:   Thu Jul 27 09:12:20 2023 -0700
+
+    add some items
+
+[33mcommit 6c7d7e1fb89105d65adb11ca46b9498a8af7b58c[m
+Author: Michael Paknys <mpaknys@icloud.com>
+Date:   Wed Jul 26 16:04:10 2023 -0700
+
+    Added some SQL insertion statements
+
+[33mcommit c6514c44d76c78844e7a09222ab0a4bf275ceaaf[m
+Merge: 8436e05 1e0fd22
+Author: Kyle Nguyen <120854458+kylenguy3n@users.noreply.github.com>
+Date:   Tue Jul 25 16:12:02 2023 -0700
+
+    Merge branch 'main' of https://github.students.cs.ubc.ca/CPSC304-2023S-T2/project_k1s9g_k4r6m_t8a8t
+
+[33mcommit 8436e05784102a213a4ee515dcc0f3a399a8f211[m
+Author: Kyle Nguyen <120854458+kylenguy3n@users.noreply.github.com>
+Date:   Tue Jul 25 16:11:59 2023 -0700
+
+    Added .pdf version of Milestones 1-3
+
+[33mcommit a96917b7a13b780ab5024181550abbd5bf94fd38[m
+Author: Kyle Nguyen <120854458+kylenguy3n@users.noreply.github.com>
+Date:   Tue Jul 25 16:09:21 2023 -0700
+
+    Added Milestone 2 and 3 .docx Files
+
+[33mcommit 1e0fd22a4cf96f1ec4ef7b73b37ae22c9134e8c9[m
+Author: Michael Paknys <mpaknys@icloud.com>
+Date:   Tue Jul 25 16:05:43 2023 -0700
+
+    Added names to README
+
+[33mcommit 39b3fd011f7fb7c2d66385352f42de056436999c[m
+Author: Kyle Nguyen <120854458+kylenguy3n@users.noreply.github.com>
+Date:   Tue Jul 25 15:03:41 2023 -0700
+
+    Update Milestone 2 - DDL.sql
+
+[33mcommit 14dc0acc6d2458b5f49a8ac1931d66e8fd33e891[m
+Author: Kyle Nguyen <120854458+kylenguy3n@users.noreply.github.com>
+Date:   Tue Jul 25 14:18:23 2023 -0700
+
+    Update Milestone 2 - DDL.sql
+    
+    Added lines to create insertions into each table, with a few examples already in the first table
+
+[33mcommit 410adc4b351f1f5650d3480c9613e5f01c302cb1[m
+Merge: 467cc3e b8b4dcd
+Author: Kyle Nguyen <120854458+kylenguy3n@users.noreply.github.com>
+Date:   Tue Jul 25 14:08:25 2023 -0700
+
+    Merge branch 'main' of https://github.students.cs.ubc.ca/CPSC304-2023S-T2/project_k1s9g_k4r6m_t8a8t
+
+[33mcommit 467cc3e2cdcfe5da718fae811562bf530181b96f[m
+Author: Kyle Nguyen <120854458+kylenguy3n@users.noreply.github.com>
+Date:   Tue Jul 25 14:08:14 2023 -0700
+
+    Create Milestone 2 - DDL.sql
+
+[33mcommit b8b4dcda13e1dedb13535ff18295601d3efd292b[m
+Author: UBC Student <kynguyen@students.cs.ubc.ca>
+Date:   Tue Jul 25 13:53:16 2023 -0700
+
+    Created README.md
+
+[33mcommit 29125e1a3e16f5ba999bec4662638970d0e2b1c7[m
+Author: UBC Student <kynguyen@students.cs.ubc.ca>
+Date:   Mon Jul 24 20:26:52 2023 -0700
+
+    Added Milestone 1
+
+[33mcommit 7d4ff88bc8cdb458b9a1b311b2a32b88b0ba69fd[m
+Author: UBC Student <kynguyen@students.cs.ubc.ca>
+Date:   Mon Jul 24 18:51:05 2023 -0700
+
+    Added Revised ER Diagram for Milestone 2
+
+[33mcommit ddf576cfc4fe7a7421c79012ded907d57dbdf322[m
+Author: UBC Student <kynguyen@students.cs.ubc.ca>
+Date:   Sun Jul 16 22:45:07 2023 -0700
+
+    Uploaded updated Milestone 1 - ER Diagram.drawio
+
+[33mcommit 69a8be9c591290dc1927b4872eefd212092ca3ba[m
+Author: UBC Student <kynguyen@students.cs.ubc.ca>
+Date:   Sun Jul 16 22:44:48 2023 -0700
+
+    Deleted old Milestone 1 - ER Diagram.drawio
+
+[33mcommit 149739d6dc9d910d4c7be611d836202979185d94[m
+Author: UBC Student <kynguyen@students.cs.ubc.ca>
+Date:   Sun Jul 16 00:39:36 2023 -0700
+
+    Added Milestone 1 - ER Diagram.drawio
